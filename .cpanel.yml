@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/sohrabniroo/public_html/
+    # Clean webroot except cPanel special dirs
+    - /usr/bin/find "$DEPLOYPATH" -mindepth 1 -maxdepth 1 ! -name ".well-known" ! -name "cgi-bin" -exec /bin/rm -rf {} +
+    # Deploy the built site (adjust if you deploy /build instead of /dist)
+    - /bin/cp -R dist/* "$DEPLOYPATH"
