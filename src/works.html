@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+	@@include('./partials/head.html')
+
+	<body
+		class="relative h-screen overflow-y-auto overflow-x-hidden bg-light text-dark dark:bg-dark-2 dark:text-light">
+		<div
+			class="mx-auto flex max-w-screen-2xl flex-col justify-between gap-4 p-4 lg:gap-6 lg:p-6">
+			@@include('./partials/header.html', { "activeLink": "works", })
+
+			<main class="grid gap-4 lg:gap-6">
+
+				<!-- Title -->
+				<div class="mt-10 rounded-2xl bg-white/50 backdrop-blur-md p-4 shadow dark:bg-black/50 dark:shadow-dark lg:col-span-2 lg:p-6">
+					<div class="">
+						<h2 class="text-3xl font-semibold leading-tight text-dark dark:text-light lg:text-[40px] lg:leading-tight">
+							My past
+						</h2>
+						<p class="mt-2 md:mt-4 text-lg text-base dark:text-light/70">
+							Here is my dust room of the previous works I have pinned down on the map and showcased for you to <b class="text-primary">like</b> me 😁
+						</p>
+					</div>
+                </div>
+				</main>
+				<!-- End of Title -->
+
+			<!-- Accordion Case studies -->
+            <main class="grid gap-4 lg:gap-6">
+
+                <div class="hs-accordion-group rounded-2xl bg-white/50 backdrop-blur-md p-4 shadow dark:bg-black/50 dark:shadow-dark lg:col-span-2 lg:p-6">
+                <div class="hs-accordion mt-1 rounded-lg border border-transparent  transition active ">
+                    <button class="hs-accordion-toggle inline-flex w-full items-center justify-between gap-x-3  text-start text-lg font-medium text-slate-600 transition hover:text-muted disabled:pointer-events-none disabled:opacity-50 hs-accordion-active:text-primary dark:text-muted dark:hover:text-light dark:focus:outline-none dark:hs-accordion-active:text-primary xl:text-2xl">
+                        <div class="inline-flex gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30" viewBox="0 0 48 48">
+                            <path fill="currentColor" d="M10.5 6C10.3105 6 10.124082 6.0104805 9.9394531 6.0292969C9.571481 6.0667987 9.2141905 6.1413291 8.8710938 6.2480469C7.1472189 6.7842455 5.7842455 8.1472189 5.2480469 9.8710938C5.1413291 10.21419 5.0667987 10.571481 5.0292969 10.939453C5.0292305 10.940097 5.0293631 10.940762 5.0292969 10.941406C5.0106094 11.125412 5 11.311158 5 11.5L5 13.5L5 36.5C5 39.519774 7.4802259 42 10.5 42L37.5 42C40.519774 42 43 39.519774 43 36.5L43 13.5L43 11.5C43 11.310603 42.989737 11.124126 42.970703 10.939453C42.933201 10.571481 42.858671 10.21419 42.751953 9.8710938C42.215754 8.1472189 40.852781 6.7842455 39.128906 6.2480469C38.78581 6.1413291 38.428519 6.0667987 38.060547 6.0292969C38.059905 6.0292315 38.059235 6.029362 38.058594 6.0292969C37.874547 6.0103939 37.688736 6 37.5 6L10.5 6 z M 10.5 9C11.328 9 12 9.672 12 10.5C12 11.328 11.328 12 10.5 12C9.672 12 9 11.328 9 10.5C9 9.672 9.672 9 10.5 9 z M 15.5 9C16.328 9 17 9.672 17 10.5C17 11.328 16.328 12 15.5 12C14.672 12 14 11.328 14 10.5C14 9.672 14.672 9 15.5 9 z M 21.5 9L37.5 9C38.328 9 39 9.672 39 10.5C39 11.328 38.328 12 37.5 12L21.5 12C20.672 12 20 11.328 20 10.5C20 9.672 20.672 9 21.5 9 z M 8 15L40 15L40 36.5C40 37.898226 38.898226 39 37.5 39L10.5 39C9.1017741 39 8 37.898226 8 36.5L8 15 z M 12.5 18 A 1.50015 1.50015 0 0 0 11 19.5L11 34.5 A 1.50015 1.50015 0 0 0 12.5 36L20.5 36 A 1.50015 1.50015 0 0 0 22 34.5L22 19.5 A 1.50015 1.50015 0 0 0 20.5 18L12.5 18 z M 26.5 18 A 1.50015 1.50015 0 1 0 26.5 21L35.5 21 A 1.50015 1.50015 0 1 0 35.5 18L26.5 18 z M 14 21L19 21L19 33L14 33L14 21 z M 26.5 23 A 1.50015 1.50015 0 1 0 26.5 26L35.5 26 A 1.50015 1.50015 0 1 0 35.5 23L26.5 23 z M 26.5 28 A 1.50015 1.50015 0 1 0 26.5 31L35.5 31 A 1.50015 1.50015 0 1 0 35.5 28L26.5 28 z M 26.5 33 A 1.50015 1.50015 0 1 0 26.5 36L31.5 36 A 1.50015 1.50015 0 1 0 31.5 33L26.5 33 z" 
+                             />
+                          </svg>
+                        <span class="text-xl font-semibold ">
+                            
+                             Case studies
+                            </span>
+                        </div>
+                        <span
+                                class="grid h-8 w-8 shrink-0 place-content-center rounded bg-light text-primary hs-accordion-active:bg-light dark:bg-dark-2 dark:hs-accordion-active:bg-dark-2">
+                                <svg
+                                    class="block h-3.5 w-3.5 hs-accordion-active:hidden"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                    <path d="M12 5v14" />
+                                </svg>
+                                <svg
+                                    class="hidden h-3.5 w-3.5 hs-accordion-active:block"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M5 12h14" />
+                                </svg>
+                            </span>
+                    </button>
+                    <div class=" hs-accordion-content  w-full overflow-hidden transition-[height] duration-300">
+                    <div class="mt-4">
+                    <div class="grid grid-cols-1 gap-5 md:grid-cols-3">  
+
+                        <!-- Gameclude -->
+                        <div class="bg-light dark:bg-dark-2 rounded-lg">
+                            <div class="relative">
+                                <a href="Gameclude.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+                                    <img src="assets/img/Assets/GameClude/Gamclude.Mock.Light.BG.png" alt="Gameclude" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+                                </a>
+                                <!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="Gameclude.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										C2C, B2B                            
+									</a>
+									<a href="Gameclude.html" class="inline-flex items-center font-medium justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Esport                           
+									</a>
+								</div>
+                            </div>
+                            <div class="p-3 ">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <a href="Gameclude.html" class="text-2xl font-semibold inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+                                        Gameclude</a>
+                                    <a  class="relative text-sm text-muted/50 before:mr-1 dark:text-muted">
+                                        <span>9 min read</span>                                                                                                          
+                                    </a>                                
+                                </div> 
+                                <a href="Gameclude.html" class="mt-2">  is a wagering platform for gamers where they can place bets on their 
+                                    own skills in E-sports matches to play in Solo or Squads mode matches.</a>                           
+                            </div>
+                        </div>
+                        <!-- End of Gameclude -->
+
+                        <!-- Lobox -->                        
+                            <div class="bg-light dark:bg-dark-2 rounded-lg">
+                                <div class="relative">
+                                    <a href="Lobox.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+                                        <img src="assets/img/Assets/Lobox/Feed.Mock.Desktop.Dark.png" alt="Lobox" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+                                    </a>
+        
+                                    <!-- Tags -->
+                                    <div class="absolute bottom-4 left-4 flex-wrap gap-2">
+                                        <a href="Lobox.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+                                            B2B, B2C, C2C                             
+                                        </a>
+                                        <a href="Lobox.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+                                            Social Media                           
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="p-3 ">
+                                    <div class="flex flex-wrap items-center justify-between gap-2">
+                                        <a href="Lobox.html" class="text-2xl font-semibold inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+                                            Lobox</a>
+                                        <a  class="relative text-sm text-muted/50 before:mr-1 dark:text-muted">
+                                            <span>4 min read</span>                                                                                                          
+                                        </a>                                
+                                    </div> 
+                                    <a href="Lobox.html" class="mt-2">  is a super social app designed to meet the various needs of users and businesses. With its easy-to-use 
+                                        modules which aims to be the top choice for social life and business solutions.</a>                           
+                                </div>
+                            </div>
+                            <!-- End Lobox -->
+
+                        <!-- ZarinKala -->
+                        <div class="bg-light dark:bg-dark-2 rounded-lg">
+                            <div class="relative">
+                                <a href="ZarinKala.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+                                    <img src="assets/img/Assets/ZarinKala/ZarinKala.jpg" alt="ZarinKala" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+                                </a>
+    
+                                <!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="ZarinKala.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										B2C                             
+									</a>
+									<a href="ZarinKala.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Tech Store                            
+									</a>
+								</div>
+                            </div>
+                            <div class="p-3 ">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <a href="ZarinKala.html" class="text-2xl font-semibold inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+                                        ZarinKala</a>
+                                    <a  class="relative text-sm text-muted/50 before:mr-1 dark:text-muted">
+                                        <span>7 min read</span>                                                                                                          
+                                    </a>                                
+                                </div> 
+                                <a href="ZarinKala.html" class="mt-2"> was a hardware store for products like mobile and cameras in Irans' 
+                                    market with the mission to compete in the market with quality services</a>                           
+                            </div>                           
+                        </div>
+                        <!-- End of Zarikala -->
+
+                        <!-- 071 -->
+                        <div class="bg-light dark:bg-dark-2 rounded-lg">
+                            <div class="relative">
+                                <a href="071.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+                                    <img src="assets/img/Assets/071/Gallery/071.ad.Mock.png" alt="071" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+                                </a>
+    
+                                <!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="071.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										C2C, B2B                             
+									</a>
+									<a href="071.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Marketplace                             
+									</a>
+								</div>
+                            </div>
+                            <div class="p-3 ">
+                                <div class="flex flex-wrap items-center justify-between gap-2">
+                                    <a href="071.html" class="text-2xl font-semibold inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+                                        071</a>
+                                    <a  class="relative text-sm text-muted/50 before:mr-1 dark:text-muted">
+                                        <span>5 min read</span>                                                                                                          
+                                    </a>                                
+                                </div> 
+                                <a href="071.html" class="mt-2"> was a 2nd hand market place, Project targered market with a
+                                     comprehensive user experience to grow satisfactions rate, separating them from competitors.</a>                           
+                            </div>                             
+                        </div>   
+                        <!-- End of 071 -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </main>
+                <!-- End Case studies -->                
+                </div>
+			<!-- Animated Contact -->
+			<div class="sticky inset-x-0 sticky bottom-0 z-50">
+				<div class="mx-auto flex max-w-screen-2xl flex-col justify-between gap-4 px-4 py-0 lg:px-6 lg:gap-6">
+					<div class="rounded-2xl bg-white/50 backdrop-blur-md p-4 shadow dark:bg-black/50 dark:shadow-dark">
+					<div class="flex flex-row">
+						<marquee behavior="scroll" direction="left" class="overflow-hidden text-nowrap rounded-l-lg bg-light p-2 text-xl font-medium text-slate-600 dark:bg-dark-2">
+							Available For Hire 🚀 Design Digital Experiences 🎨 Available For Hire 🚀
+							Logical Designer 🎨
+						</marquee>
+						<a href="https://calendly.com/sohrabniroo/30min" target="_blank" class="basis-1/6 text-nowrap rounded-r-lg bg-light p-3 dark:bg-dark-2 inline-flex items-center justify-center gap-2 border-b text-center text-base text-primary transition hover:border-b-primary dark:border-b-muted dark:hover:border-b-primary">
+							<svg class="hidden lg:flex" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M6.535 2.116c-1.04-.264-2.13-.152-2.984.326c-.87.486-1.48 1.348-1.51 2.501c-.046 1.802.371 4.22 2.027 7.058c1.635 2.803 3.44 4.483 4.938 5.481c.946.631 1.991.648 2.884.237c.88-.405 1.594-1.214 1.965-2.217a1.838 1.838 0 0 0-.12-1.536l-.954-1.702a2.5 2.5 0 0 0-3.074-1.114l-.666.255c-.323.123-.62.066-.788-.1c-.565-.555-.969-1.308-1.152-2.12c-.058-.256.06-.558.342-.771l.601-.454a2.5 2.5 0 0 0 .663-3.239l-.972-1.695a1.929 1.929 0 0 0-1.2-.91M3.041 4.97c.02-.774.412-1.327.998-1.655c.602-.337 1.424-.44 2.25-.23a.93.93 0 0 1 .579.439l.971 1.695a1.5 1.5 0 0 1-.397 1.943l-.601.454c-.52.392-.88 1.064-.716 1.789c.222.982.713 1.913 1.427 2.614c.522.512 1.266.542 1.846.32l.666-.255a1.5 1.5 0 0 1 1.845.668l.953 1.703c.12.214.14.47.055.7c-.29.785-.835 1.374-1.445 1.655c-.597.275-1.272.267-1.911-.16c-1.371-.914-3.07-2.481-4.63-5.153C3.37 8.817 3 6.583 3.042 4.97m9.702-2.908a.5.5 0 1 0-.486.874l.384.214a8.5 8.5 0 0 1 4.33 6.584l.032.315a.5.5 0 1 0 .994-.1l-.031-.314a9.5 9.5 0 0 0-4.84-7.36zm-1.172 2.68a.5.5 0 0 1 .686-.171l.124.074A6.5 6.5 0 0 1 15.45 9.15l.044.267a.5.5 0 1 1-.986.165l-.045-.267a5.5 5.5 0 0 0-2.595-3.812l-.124-.075a.5.5 0 0 1-.172-.686"/>
+							</svg>
+							<span class="font-semibold">Book a call</span>
+							
+						</a>
+					</div>
+					</div>
+				</div>
+			</div>
+				<!-- End of Animated Contact -->
+
+			<!-- Footer -->
+			@@include('./partials/footer.html')
+			<!-- End of Footer -->
+		</div>
+
+		<!-- Shapes -->
+		<div class="shapes">
+			<div
+				class="fixed -left-1/2 -top-1/2 -z-10 animate-spin-very-slow xl:-left-[20%] xl:-top-1/3">
+				<img src="assets/img/gradient-1.png" alt="" class="" />
+			</div>
+
+			<div
+				class="fixed -right-[50%] top-[10%] -z-10 animate-spin-very-slow xl:-right-[15%] xl:top-[10%]">
+				<img src="assets/img/gradient-2.png" alt="" class="" />
+			</div>
+
+			<div class="move-with-cursor hidden md:block fixed left-[10%] top-[20%] -z-10">
+				<img src="assets/img/object-3d-1.png" alt="" class="" />
+			</div>
+			
+			<div class=" fixed left-[10%] top-[6%] md:left-[40%] md:top-[8%] -z-10">
+				<dotlottie-player src="https://lottie.host/614df464-d53e-4182-b0c8-25acf79ded5f/VYrDAtHqir.json" background="transparent" speed="0.8" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay>
+				</dotlottie-player>
+				
+			</div>
+
+			<div class="move-with-cursor fixed bottom-[8%] md:[20%] right-[-14%] md:right-[10%] -z-10">
+				<img src="assets/img/object-3d-2.png" alt="" class="" />
+			</div>
+		</div>
+		<!-- End of Shapes -->
+
+		@@include('./partials/plugin-scripts.html')
+	</body>
+</html>

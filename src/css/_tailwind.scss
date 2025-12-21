@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html,
+	body {
+		@apply [&::-webkit-scrollbar-thumb]:bg-gray-400
+        dark:[&::-webkit-scrollbar-thumb]:bg-slate-500
+        [&::-webkit-scrollbar-track]:bg-transparent
+        [&::-webkit-scrollbar]:w-3;
+	}
+}
+
+@layer components {
+	.vbox-container {
+		@apply overflow-y-auto [&::-webkit-scrollbar-thumb]:bg-gray-400
+        dark:[&::-webkit-scrollbar-thumb]:bg-slate-500
+        [&::-webkit-scrollbar-track]:bg-transparent
+        [&::-webkit-scrollbar]:w-3;
+	}
+
+	.alert-success {
+		@apply rounded-lg border border-teal-200 bg-teal-100 p-4 text-sm text-teal-800 dark:border-teal-900 dark:bg-teal-800/10 dark:text-teal-500;
+	}
+
+	.alert-danger {
+		@apply rounded-lg border border-red-200 bg-red-100 p-4 text-sm text-red-800 dark:border-red-900 dark:bg-red-800/10 dark:text-red-500;
+	}
+}

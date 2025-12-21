@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html lang="en" class="h-full">
+	
+	@@include('./partials/head.html')
+	
+	
+
+	<body
+	 	
+		class="relative h-screen overflow-y-auto overflow-x-hidden bg-light text-dark dark:bg-dark-2 dark:text-light">
+		
+		<div
+			class="mx-auto flex max-w-screen-2xl flex-col justify-between gap-4 p-4 lg:gap-6 lg:p-6">
+			@@include('./partials/header.html', { "activeLink": "home", })
+
+			<!-- Moto -->
+			<div class="font-bold text-3xl md:text-6xl pt-6 pb-6 text-center text-dark dark:text-white ">
+				Design your Business Goals...
+        	</div>
+        	<!-- End of Moto -->			
+
+			<main class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
+
+				<!-- Intro -->
+				
+				<div class="rounded-2xl bg-white/80  p-6 shadow dark:bg-black/80 dark:shadow-dark">
+					<div class="aspect-4/6 overflow-hidden rounded-lg bg-light pt-4 text-center dark:bg-dark-2">
+						<img src="assets/img/Assets/Profile.png" alt="" class="inline-block h-full w-full scale-110 object-contain object-bottom" />
+					</div>
+	
+					<div class="mt-4">
+						<h3 class="text-2xl font-semibold dark:text-light">Sohrab Niroo 👋</h3>						
+						<li class="mt-2 text-muted dark:text-light/70">
+							<span class="font-semibold text-dark dark:text-white">
+								6
+								</span>
+							years 
+							<span class="font-semibold text-dark dark:text-white">
+								product designer
+							</span> with
+								<span class="font-semibold text-dark dark:text-white">
+									40+
+									</span>
+									projects.
+						</li>								
+						<li class="mt-2 text-muted dark:text-light/70"> Focused on 
+							<span class="font-semibold text-dark dark:text-white">
+							 logics
+							</span> 
+							that fit
+							<span class="font-semibold text-dark dark:text-white">
+							market<span class="font-semibold text-dark dark:text-white">
+							</span>needs.
+						</li>	
+							<li class="mt-2 text-muted dark:text-light/70">Skilled in
+							<span class="font-semibold text-dark dark:text-white">  analysis, user-flows,</span> and <span class="font-semibold text-dark dark:text-white"> research </span>
+						</li>
+						</div>						
+	
+						<!-- CTA buttons -->
+						<div class="mt-4 lg:mt-6 flex flex-wrap gap-2 grid grid-cols-2">
+							<a href="https://calendly.com/sohrabniroo/30min" target="_blank" class="inline-flex items-center justify-center gap-x-2 rounded-lg border border-transparent bg-primary  font-medium text-white transition hover:bg-blue-600 focus:outline-none focus:ring disabled:pointer-events-none disabled:opacity-50">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M6.535 2.116c-1.04-.264-2.13-.152-2.984.326c-.87.486-1.48 1.348-1.51 2.501c-.046 1.802.371 4.22 2.027 7.058c1.635 2.803 3.44 4.483 4.938 5.481c.946.631 1.991.648 2.884.237c.88-.405 1.594-1.214 1.965-2.217a1.838 1.838 0 0 0-.12-1.536l-.954-1.702a2.5 2.5 0 0 0-3.074-1.114l-.666.255c-.323.123-.62.066-.788-.1c-.565-.555-.969-1.308-1.152-2.12c-.058-.256.06-.558.342-.771l.601-.454a2.5 2.5 0 0 0 .663-3.239l-.972-1.695a1.929 1.929 0 0 0-1.2-.91M3.041 4.97c.02-.774.412-1.327.998-1.655c.602-.337 1.424-.44 2.25-.23a.93.93 0 0 1 .579.439l.971 1.695a1.5 1.5 0 0 1-.397 1.943l-.601.454c-.52.392-.88 1.064-.716 1.789c.222.982.713 1.913 1.427 2.614c.522.512 1.266.542 1.846.32l.666-.255a1.5 1.5 0 0 1 1.845.668l.953 1.703c.12.214.14.47.055.7c-.29.785-.835 1.374-1.445 1.655c-.597.275-1.272.267-1.911-.16c-1.371-.914-3.07-2.481-4.63-5.153C3.37 8.817 3 6.583 3.042 4.97m9.702-2.908a.5.5 0 1 0-.486.874l.384.214a8.5 8.5 0 0 1 4.33 6.584l.032.315a.5.5 0 1 0 .994-.1l-.031-.314a9.5 9.5 0 0 0-4.84-7.36zm-1.172 2.68a.5.5 0 0 1 .686-.171l.124.074A6.5 6.5 0 0 1 15.45 9.15l.044.267a.5.5 0 1 1-.986.165l-.045-.267a5.5 5.5 0 0 0-2.595-3.812l-.124-.075a.5.5 0 0 1-.172-.686"/>
+								</svg>
+								<span>Book a call</span>
+							</a>
+							<button type="button" data-clipboard-text="sohrab.niroo@gmail.com" data-clipboard-action="copy" data-clipboard-success-text="Copied to clipboard"  
+							class="js-clipboard hs-tooltip inline-flex items-center justify-center gap-x-2 rounded-lg border border-light bg-white dark:bg-dark-2 py-4 font-medium text-dark transition [--trigger:focus] hover:bg-light focus:outline-none focus:ring disabled:pointer-events-none disabled:opacity-50 dark:border-dark dark:text-light/70 dark:hover:bg-dark dark:hover:text-white" >
+								
+								<span class="hs-tooltip-content fixed z-0 hidden rounded-lg bg-gray-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-sm transition-opacity hs-tooltip-shown:visible hs-tooltip-shown:opacity-100 dark:bg-slate-700"
+										role="tooltip">
+										Copied: sohrab.niroo@gmail.com
+									</span>
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="h-6 w-6">
+									<path d="M8 10a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-8Z" />
+									<path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" />
+								</svg>
+								<span>Copy email</span>								
+							</button>
+
+						</div>
+
+
+						<a href="assets/resume/Portfolio.Sohrab.Niroo.Product.Designer.pdf" target="_blank" class="w-full mt-4 lg:mt-6 h-10 text-nowrap rounded-lg bg-transparent p-2 dark:bg-dark-2 inline-flex items-center justify-center gap-1 border text-center  text-slate-600 transition hover:text-primary dark:hover:text-primary dark:text-slate-500 hover:border-transparent  dark:border-transparent dark:hover:border-transparent">
+							<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20">
+							   
+								<path fill="currentColor" d="M6.5 11a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 1 0v-.166h.334a1.167 1.167 0 0 0 0-2.334zm.834 1.334H7V12h.333a.167.167 0 0 1 0 .334M12 11.499a.5.5 0 0 1 .5-.499h.999a.5.5 0 0 1 0 1H13v.335h.5a.5.5 0 1 1 0 1H13l.001.164a.5.5 0 0 1-1 .002L12 12.834zM9.5 11a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h.502a1.5 1.5 0 0 0 0-3zm.5 2v-1h.002a.5.5 0 0 1 0 1zM4.001 4a2 2 0 0 1 2-2h4.585a1.5 1.5 0 0 1 1.061.44l3.914 3.914a1.5 1.5 0 0 1 .44 1.06v1.668a1.5 1.5 0 0 1 .998 1.414v4.003a1.5 1.5 0 0 1-.998 1.414V16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-.087A1.5 1.5 0 0 1 3 14.5v-4.003a1.5 1.5 0 0 1 1-1.414zm11 4h-3.5A1.5 1.5 0 0 1 10 6.5V3H6a1 1 0 0 0-1 1v4.996h10zM5 15.999A1 1 0 0 0 6 17h8a1 1 0 0 0 1-1.001zm6-12.792V6.5a.5.5 0 0 0 .5.5h3.292zM4.502 9.996a.5.5 0 0 0-.5.5v4.003a.5.5 0 0 0 .5.5h10.997a.5.5 0 0 0 .5-.5v-4.003a.5.5 0 0 0-.5-.5z"/>
+							
+							</svg>
+							 <span class="font-semibold">PDF portfolio                                
+							 </span>
+						 </a>
+	
+						<!-- Social -->
+						<div class="mt-4 lg:mt-6 flex inline-block items-center justify-center gap-2">
+							<a href="https://www.linkedin.com/in/sniroo/" target="_blank" class="flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-transparent text-center text-slate-600 transition hover:text-primary focus:outline-none focus:ring disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-dark-2 dark:text-slate-500 dark:hover:text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<circle cx="4" cy="4" r="2" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" dur="0.4s" values="0;1"/>
+									</circle><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="4"><path stroke-dasharray="12" stroke-dashoffset="12" d="M4 10V20"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.2s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M10 10V20"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="24" stroke-dashoffset="24" d="M10 15C10 12.2386 12.2386 10 15 10C17.7614 10 20 12.2386 20 15V20">
+										<animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.5s" values="24;0"/></path></g></svg>
+							</a>
+							<a href="https://www.behance.net/Sniroo" target="_blank" class="flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-transparent text-center text-slate-600 transition hover:text-primary focus:outline-none focus:ring disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-dark-2 dark:text-slate-500 dark:hover:text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
+									<path fill="currentColor" d="M9.25 6.005c.938 0 1.786.078 2.563.25c.766.172 1.427.438 1.979.813c.547.375.974.865 1.281 1.495c.297.625.453 1.401.453 2.307c0 .984-.229 1.813-.677 2.479c-.453.667-1.115 1.198-2.005 1.625c1.208.349 2.104.958 2.698 1.828c.599.88.885 1.932.885 3.146c0 1-.172 1.854-.547 2.573a4.899 4.899 0 0 1-1.547 1.802c-.641.464-1.401.797-2.224 1.021a9.81 9.81 0 0 1-2.547.339H-.001V6.016h9.25zm13.339 16.214c.583.573 1.427.859 2.526.859c.786 0 1.464-.198 2.036-.599c.568-.385.906-.813 1.042-1.25h3.448c-.536 1.703-1.396 2.932-2.531 3.667C27.975 25.641 26.6 26 25.006 26c-1.12 0-2.115-.172-3.031-.531a6.587 6.587 0 0 1-2.292-1.521c-.62-.651-1.099-1.438-1.438-2.359s-.5-1.932-.5-3.026c0-1.073.182-2.052.542-2.974a7.191 7.191 0 0 1 1.49-2.385c.661-.682 1.417-1.193 2.318-1.594c.896-.401 1.865-.578 2.958-.578c1.214 0 2.255.219 3.172.698a6.371 6.371 0 0 1 2.214 1.865c.589.781 1 1.682 1.255 2.698c.255 1 .333 2.052.281 3.172H21.72c0 1.12.375 2.177.948 2.75l-.109.042zm-13.657.067c.422 0 .828-.042 1.208-.125a3.017 3.017 0 0 0 1.016-.401c.281-.177.521-.438.698-.776c.172-.318.25-.76.25-1.281c0-1-.292-1.719-.854-2.156c-.573-.427-1.318-.641-2.25-.641H4.318v5.401h4.615v-.042zm18.146-7.531c-.474-.516-1.255-.792-2.214-.792c-.62 0-1.135.099-1.552.318a2.938 2.938 0 0 0-.99.786a2.8 2.8 0 0 0-.521 1a4.48 4.48 0 0 0-.177.948h6.349c-.094-1-.443-1.734-.906-2.255v.016zm-18.385-.823c.766 0 1.401-.177 1.901-.547c.5-.359.74-.964.74-1.786c0-.458-.094-.833-.24-1.125a1.94 1.94 0 0 0-.667-.682a2.826 2.826 0 0 0-.964-.344a5.699 5.699 0 0 0-1.12-.099H4.307v4.583zm12.13-6.609h7.958V9.26h-7.958V7.307z"/></svg>
+							</a>
+							<a href="https://dribbble.com/Sniroo" target="_blank" class="flex h-10 w-full items-center justify-center rounded-lg border border-slate-200 bg-transparent text-center text-slate-600 transition hover:text-primary focus:outline-none focus:ring disabled:pointer-events-none disabled:opacity-50 dark:border-transparent dark:bg-dark-2 dark:text-slate-500 dark:hover:text-primary">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+									<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+										<path d="M44 24a19.938 19.938 0 0 1-5.889 14.173A19.937 19.937 0 0 1 24 44C12.954 44 4 35.046 4 24a19.932 19.932 0 0 1 5.5-13.775A19.943 19.943 0 0 1 24 4a19.937 19.937 0 0 1 14.111 5.827A19.938 19.938 0 0 1 44 24"/><path d="M44 24c-2.918 0-10.968-1.1-18.173 2.063C18 29.5 12.333 34.832 9.863 38.147"/><path d="M16.5 5.454C19.63 8.343 26.46 15.698 29 23c2.54 7.302 3.48 16.28 4.06 18.835"/><path d="M4.154 21.5c3.778.228 13.779.433 20.179-2.3c6.4-2.733 11.907-7.76 13.796-9.355M5.5 31.613a20.076 20.076 0 0 0 9 9.991"/><path d="M4 24a19.932 19.932 0 0 1 5.5-13.775M24 4a19.943 19.943 0 0 0-14.5 6.225M32 5.664a20.037 20.037 0 0 1 6.111 4.163A19.938 19.938 0 0 1 44 24c0 2.462-.445 4.821-1.26 7M24 44a19.937 19.937 0 0 0 14.111-5.827"/></g></svg>
+							</a>
+							
+						</div>
+					</div>
+				
+				<!-- End of intro -->
+
+
+				 <!-- Projects -->
+				 <div class="rounded-2xl p-6 bg-white/50 backdrop-blur-md shadow dark:bg-black/50 dark:shadow-dark lg:col-span-2">
+					<div class="flex flex-wrap items-center justify-between gap-2">
+						<h3 class="text-2xl font-semibold dark:text-light">Projects</h3>
+						<a href="works.html" class="inline-flex items-center justify-center gap-2 border-b text-center text-base text-primary transition hover:border-b-primary dark:border-b-muted dark:hover:border-b-primary">
+							<span>View all</span>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" class="h-5 w-5">
+								<path d="M4.167 10h11.666m-4.999 5 5-5m-5-5 5 5" />
+							</svg>
+						</a>
+					</div>
+	
+					<div class="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
+
+						<!-- GameClude -->
+						<div class="">
+							<div class="relative">
+								<a href="Gameclude.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+									<img src="assets/img/Assets/GameClude/Gamclude.Mock.Light.BG.png" alt="Gameclude" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+								</a>
+	
+								<!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="Gameclude.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										C2C, B2B                            
+									</a>
+									<a href="Gameclude.html" class="inline-flex items-center font-medium justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Esport                           
+									</a>
+								</div>
+							</div>
+							<div class="mt-2">
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<a href="Gameclude.html" class="text-2xl font-semibold inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+										Gameclude</a>
+										<a  class="relative text-sm font-medium text-muted before:mr-1 dark:text-muted">
+										<span>9 min read</span>                                                                                                          
+									</a>                                
+								</div>                            
+							</div>
+						</div>
+						<!-- End Of Gameclude -->
+
+						<!-- Lobox -->						
+						<div class="">
+							<div class="relative">
+								<a href="Lobox.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+									<img src="assets/img/Assets/Lobox/Feed.Mock.Desktop.Dark.png" alt="Lobox" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+								</a>	
+								<!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex-wrap gap-2">
+									<a href="Lobox.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										B2B, B2C, C2C                             
+									</a>
+									<a href="Lobox.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Social Media                           
+									</a>
+								</div>
+							</div>
+							<div class="mt-2">
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<a href="Lobox.html" class="text-2xl font-medium inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+										Lobox</a>
+									<a  class="relative text-sm font-medium text-muted before:mr-1 dark:text-muted">
+										<span>4 min read</span>                                                                                                          
+									</a>                                
+								</div>                            
+							</div>
+						</div>
+						<!-- End Of Lobox -->
+
+						<!-- ZarunKala -->
+						<div class="">
+							<div class="relative">
+								<a href="ZarinKala.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+									<img src="assets/img/Assets/ZarinKala/ZarinKala.jpg" alt="ZarinKala" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+								</a>
+	
+								<!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="ZarinKala.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										B2C                             
+									</a>
+									<a href="ZarinKala.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Tech Store                            
+									</a>
+								</div>
+							</div>
+							<div class="mt-2">
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<a href="ZarinKala.html" class="text-2xl font-medium inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+										ZarinKala</a>
+										<a  class="relative text-sm font-medium text-muted before:mr-1 dark:text-muted">
+										<span>7 min read</span>                                                                                                          
+									</a>                                
+								</div>                            
+							</div>
+						</div>
+						<!-- End Of ZarinKala -->
+
+						<!-- 071 -->
+						<div class="">
+							<div class="relative">
+								<a href="071.html" class="group block aspect-6/6 overflow-hidden rounded-lg">
+									<img src="assets/img/Assets/071/Gallery/071.ad.Mock.png" alt="071" class="h-full w-full rounded-lg object-cover transition duration-700 group-hover:scale-105" />
+								</a>
+	
+								<!-- Tags -->
+								<div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+									<a href="071.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										C2C, B2B                             
+									</a>
+									<a href="071.html" class="inline-flex items-center font-semibold justify-center gap-2 rounded bg-white px-2 py-1 text-center text-xs leading-none text-primary shadow transition hover:bg-primary hover:text-white">
+										Marketplace                             
+									</a>
+								</div>
+							</div>
+							<div class="mt-2">
+								<div class="flex flex-wrap items-center justify-between gap-2">
+									<a href="071.html" class="text-2xl font-medium inline-block text-dark transition hover:text-primary dark:text-light/70 dark:hover:text-primary">
+										071</a>
+										<a  class="relative text-sm font-medium text-muted before:mr-1 dark:text-muted">
+										<span>5 min read</span>                                                                                                          
+									</a>                                
+								</div>                            
+							</div>
+						</div>   
+						<!-- End Of 071 --> 
+					</div>
+				</div>
+				<!-- End of projects -->  
+
+					
+				<!-- Expertise -->
+				<div class="rounded-2xl bg-white p-6 bg-white/50 backdrop-blur-md shadow dark:bg-black/50 dark:shadow-dark lg:col-span-2">
+					<h3 class="text-2xl font-semibold dark:text-light">My Expert Area</h3>
+	
+					<div class="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/figma.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Figma, Figjam
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/jira.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Jira
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/hotjar-logo.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Hotjar
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/Google Sheets.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Sheets
+							</p>
+						</div>
+						
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/notion.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Notion
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/trello.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Trello
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/Adobe After Effects.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								After Effect
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/adobe_photoshop.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Photoshop
+							</p>
+						</div>
+						<div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/Adobe Illustrator.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Illustrator
+							</p>
+						</div>
+						<!-- <div class="text-center">
+							<div class="grid place-content-center rounded-lg bg-light p-3 dark:bg-dark-2">
+								<img src="assets/img/Icons/miro.svg" alt="" class="h-8 w-8" />
+							</div>
+							<p class="mt-1 text-base font-medium text-dark dark:text-light/70">
+								Miro
+							</p>
+						</div>                     -->
+					</div>
+				</div>
+	
+				<!-- works Experience -->
+				<div class="group rounded-2xl bg-white/50 backdrop-blur-md shadow dark:bg-black/50 dark:shadow-dark px-6 pt-0 ">
+					<h3 class="relative z-10  pb-2 pt-6 text-2xl font-semibold dark:text-light">
+						Works Experience
+					</h3>
+	
+					<div class=" space-y-4 overflow-hidden pb-6 pt-4 [&::-webkit-scrollbar-thumb]:bg-gray-400 dark:[&::-webkit-scrollbar-thumb]:bg-slate-500 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar]:w-0">
+						<div class=" space-y-4 group-hover:[animation-play-state:paused]">
+							<div class="flex flex-col gap-1 md:flex-row md:gap-3">
+								<p class="mt-2 text-sm font-medium text-muted dark:text-light/70">
+									2023 - Present
+								</p>
+								<div class="flex items-center gap-3">
+									<div class="grid h-8 w-8 shrink-0 place-content-center rounded-lg bg-light dark:bg-dark-2">
+										<img src="assets/img/Icons/Lobox.svg" alt="" class="h-5 w-5" />
+									</div>
+									<div class="">
+										<h6 class="text-base font-semibold text-dark dark:text-light/70">
+											Lobox Inc.
+										</h6>
+										<p class="text-sm text-muted">
+											Product Designer
+										</p>
+									</div>
+								</div>
+							</div>
+							<div class="flex flex-col gap-1 md:flex-row md:gap-7">
+								<p class="mt-2 text-sm font-medium text-muted dark:text-light/70">
+									2020 - 2024
+								</p>
+								<div class="flex items-center gap-3">
+									<div class="grid h-8 w-8 shrink-0 place-content-center rounded-lg bg-light dark:bg-dark-2">
+										<img src="assets/img/Icons/Gameclude.svg" alt="" class="h-3 w-5" />
+									</div>
+									<div class="">
+										<h6 class="text-base font-semibold text-dark dark:text-light/70">
+											Gameclude
+										</h6>
+										<p class="text-sm text-muted">Product Designer</p>
+									</div>
+								</div>
+							</div>
+							<div class="flex flex-col gap-1 md:flex-row md:gap-8">
+								<p class="mt-2 text-sm font-medium text-muted dark:text-light/70">
+									2021 - 2023
+								</p>
+								<div class="flex items-center gap-3">
+									<div class="grid h-8 w-8 shrink-0 place-content-center rounded-lg bg-light dark:bg-dark-2">
+										<img src="assets/img/Icons/Zarin fannavaran.svg" alt="" class="h-4 w-5" />
+									</div>
+									<div class="">
+										<h6 class="text-base font-semibold text-dark dark:text-light/70">
+											Zarin fannavaran
+										</h6>
+										<p class="text-sm text-muted">Product designer</p>
+									</div>
+								</div>
+							</div>
+							<div class="flex flex-col gap-1 md:flex-row md:gap-8">
+								<p class="mt-2 text-sm font-medium text-muted dark:text-light/70">
+									2019 - 2021
+								</p>
+								<div class="flex items-center gap-3">
+									<div class="grid h-8 w-8 shrink-0 place-content-center rounded-lg bg-light dark:bg-dark-2">
+										<img src="assets/img/Icons/Radin.svg" alt="" class="h-4 w-4" />
+									</div>
+									<div class="">
+										<h6 class="text-base font-semibold text-dark dark:text-light/70">
+											Radin Language Institute
+										</h6>
+										<p class="text-sm text-muted">UI UX Designer</p>
+									</div>
+								</div>
+								</div>
+								<div class="flex flex-col gap-1 md:flex-row md:gap-10 mx-auto rounded-lg items-center justify-center bg-light dark:bg-dark-2 border-b transition hover:border-b-primary dark:border-b-muted dark:hover:border-b-primary">
+									<a href="assets/resume/Product.Designer.Sohrab.Niroo.pdf" target="_blank" class="basis-1/6 text-nowrap p-2 inline-flex gap-2 text-center text-base text-primary ">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" d="M3.5 13h9a.5.5 0 0 1 .09.992L12.5 14h-9a.5.5 0 0 1-.09-.992zh9zM7.91 1.008L8 1a.5.5 0 0 1 .492.41l.008.09v8.792l2.682-2.681a.5.5 0 0 1 .638-.058l.07.058a.5.5 0 0 1 .057.638l-.058.069l-3.535 3.536a.5.5 0 0 1-.638.057l-.07-.057l-3.535-3.536a.5.5 0 0 1 .638-.765l.069.058L7.5 10.292V1.5a.5.5 0 0 1 .41-.492L8 1z"/>
+										</svg>
+										<span>Download resume</span>
+									</a>
+								</div>  
+							</div>
+						</div>
+			</main>
+
+			<!-- Animated Contact -->
+			<div class="sticky inset-x-0 sticky bottom-0 z-50">
+			<div class="mx-auto flex max-w-screen-2xl flex-col justify-between gap-4  py-0 lg:gap-6">
+				<div class="rounded-2xl p-4 bg-white/50 backdrop-blur-md shadow dark:bg-black/50 dark:shadow-dark lg:col-span-2">
+				<div class="flex flex-row">
+					<marquee behavior="scroll" direction="left" class="overflow-hidden text-nowrap rounded-l-lg bg-light p-2 text-xl font-medium text-slate-600 dark:bg-dark-2">
+						Available For Hire 🚀 Design Digital Experiences 🎨 Available For Hire 🚀
+						Logical Designer 🎨
+					</marquee>
+					<a href="https://calendly.com/sohrabniroo/30min" target="_blank" class="basis-1/6 text-nowrap rounded-r-lg bg-light p-3 dark:bg-dark-2 inline-flex items-center justify-center gap-2 border-b text-center text-base text-primary transition hover:border-b-primary dark:border-b-muted dark:hover:border-b-primary">
+						<svg class="hidden lg:flex" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20"><path fill="currentColor" d="M6.535 2.116c-1.04-.264-2.13-.152-2.984.326c-.87.486-1.48 1.348-1.51 2.501c-.046 1.802.371 4.22 2.027 7.058c1.635 2.803 3.44 4.483 4.938 5.481c.946.631 1.991.648 2.884.237c.88-.405 1.594-1.214 1.965-2.217a1.838 1.838 0 0 0-.12-1.536l-.954-1.702a2.5 2.5 0 0 0-3.074-1.114l-.666.255c-.323.123-.62.066-.788-.1c-.565-.555-.969-1.308-1.152-2.12c-.058-.256.06-.558.342-.771l.601-.454a2.5 2.5 0 0 0 .663-3.239l-.972-1.695a1.929 1.929 0 0 0-1.2-.91M3.041 4.97c.02-.774.412-1.327.998-1.655c.602-.337 1.424-.44 2.25-.23a.93.93 0 0 1 .579.439l.971 1.695a1.5 1.5 0 0 1-.397 1.943l-.601.454c-.52.392-.88 1.064-.716 1.789c.222.982.713 1.913 1.427 2.614c.522.512 1.266.542 1.846.32l.666-.255a1.5 1.5 0 0 1 1.845.668l.953 1.703c.12.214.14.47.055.7c-.29.785-.835 1.374-1.445 1.655c-.597.275-1.272.267-1.911-.16c-1.371-.914-3.07-2.481-4.63-5.153C3.37 8.817 3 6.583 3.042 4.97m9.702-2.908a.5.5 0 1 0-.486.874l.384.214a8.5 8.5 0 0 1 4.33 6.584l.032.315a.5.5 0 1 0 .994-.1l-.031-.314a9.5 9.5 0 0 0-4.84-7.36zm-1.172 2.68a.5.5 0 0 1 .686-.171l.124.074A6.5 6.5 0 0 1 15.45 9.15l.044.267a.5.5 0 1 1-.986.165l-.045-.267a5.5 5.5 0 0 0-2.595-3.812l-.124-.075a.5.5 0 0 1-.172-.686"/>
+						</svg>
+						<span class="font-semibold">Book a call</span>
+						
+					</a>
+				</div>
+				</div>
+			</div>
+			</div>
+			<!-- End of Animated Contact -->
+
+			<!-- Footer -->
+			@@include('./partials/footer.html')
+			<!-- End of Footer -->
+		</div>
+
+		<!-- Shapes -->
+		<div class="shapes">
+			<div
+				class="fixed -left-1/2 -top-1/2 -z-10 animate-spin-very-slow xl:-left-[20%] xl:-top-1/3">
+				<img src="assets/img/gradient-1.png" alt="" class="" />
+			</div>
+
+			<div
+				class="fixed -right-[50%] top-[10%] -z-10 animate-spin-very-slow xl:-right-[15%] xl:top-[10%]">
+				<img src="assets/img/gradient-2.png" alt="" class="" />
+			</div>
+
+			<div class="move-with-cursor fixed hidden 2xl:block left-[10%]  top-[20%] -z-10">
+				<img src="assets/img/object-3d-1.png" alt="" class="" />
+			</div>
+			
+			<div class=" fixed left-[10%] top-[16%] md:left-[40%] md:top-[14%] -z-10">
+				<dotlottie-player src="https://lottie.host/614df464-d53e-4182-b0c8-25acf79ded5f/VYrDAtHqir.json" background="transparent" speed="0.8" style="width: 300px; height: 300px" direction="1" playMode="normal" loop autoplay>
+				</dotlottie-player>
+				
+			</div>
+
+			<div class="move-with-cursor fixed bottom-[8%] md:[20%] right-[-14%] md:right-[10%] -z-10">
+				<img src="assets/img/object-3d-2.png" alt="" class="" />
+			</div>
+		</div>
+		<!-- End of Shapes -->
+
+		@@include('./partials/plugin-scripts.html')
+	</body>
+</html>
