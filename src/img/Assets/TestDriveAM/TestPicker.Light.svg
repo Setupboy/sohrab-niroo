@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1440" width="720" height="1440" role="img" aria-label="Test picker placeholder">
+  <rect width="720" height="1440" rx="28" fill="#F4F4F5"/>
+  <rect x="12" y="12" width="696" height="1416" rx="22" fill="none" stroke="#D4D4D8" stroke-width="3" stroke-dasharray="16 14"/>
+  <text x="50%" y="48%" text-anchor="middle" font-family="Bricolage Grotesque, Segoe UI, Arial, sans-serif" font-size="51" font-weight="600" fill="#71717A">Test picker</text>
+  <text x="50%" y="48%" dy="71" text-anchor="middle" font-family="Bricolage Grotesque, Segoe UI, Arial, sans-serif" font-size="28" fill="#A1A1AA">Light placeholder — swap with real screenshot</text>
+</svg>
