@@ -24,6 +24,18 @@ jobs:
 
       - run: npm run build
 
+      - name: Require an explicit target directory
+        env:
+          REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: |
+          if [ -z "$REMOTE_DIR" ] || [ "$REMOTE_DIR" = "/" ]; then
+            echo "::error::FTP_REMOTE_DIR is empty or '/'. Both sites share this"
+            echo "::error::cluster, so deploying to the account root would scatter"
+            echo "::error::files across them. Set it to sohrabniroo.com's own folder."
+            exit 1
+          fi
+          echo "Deploying to: $REMOTE_DIR"
+
       - name: Upload dist over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

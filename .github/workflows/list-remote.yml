@@ -1,0 +1,36 @@
+name: List remote
+
+# Read-only. Prints the FTP directory layout so the correct target folder
+# can be identified before any upload is configured. Uploads nothing.
+
+on:
+  push:
+    branches: ['claude/**']
+  workflow_dispatch:
+
+jobs:
+  list:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: List remote tree
+        env:
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+        run: |
+          if [ -z "$FTP_HOST" ]; then
+            echo "::error::Secrets are not set yet. Add FTP_HOST, FTP_USER and FTP_PASSWORD first."
+            exit 1
+          fi
+          lftp --env-password -u "$FTP_USER" "ftps://$FTP_HOST" <<'EOF'
+          set ssl:verify-certificate no
+          set ftp:ssl-force true
+          echo "===== ROOT ====="
+          ls
+          echo "===== TREE (depth 2) ====="
+          find --max-depth=2
+          bye
+          EOF
