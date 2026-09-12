@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full scroll-smooth">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+	<!-- Title -->
+	<title>Walllet business account &mdash; the KYB verification walk-through</title>
+	<meta name="description" content="Every screen of a real Bridge x Persona KYB application for a Walllet business account: 25 steps, 43 screenshots, and the hidden rules that send applications back." />
+
+	<!-- Favicon -->
+	<link rel="icon" href="assets/img/Icons/Sohrab.Logo.fav.svg" type="image/svg+xml">
+
+	<!-- Fonts: walllet.com uses Onest for text, Anta for the wordmark and Geist Mono for code -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Onest:wght@300;400;500;600;700&family=Anta&family=Geist+Mono:wght@400;500&display=swap"
+		rel="stylesheet" />
+
+	<!-- Styles -->
+	<link rel="stylesheet" type="text/css" href="./assets/css/venobox.min.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+
+	<style>
+/*
+ * walllet.com brand tokens. Scoped to .wl-doc so nothing here can reach the
+ * rest of the site. Light values are walllet's own; the dark set keeps the
+ * same hues but lifts blue and ink to clear WCAG AA on a dark ground, the
+ * way _tailwind.scss does for the site's own primary.
+ */
+.wl-doc{
+  --w-blue:#1332A3;          /* brand - pill CTAs, links, step numbers */
+  --w-blue-ink:#1332A3;      /* blue used as text */
+  --w-blue-soft:#E2E8FC;
+  --w-green:#74F286;         /* accent - progress, completion */
+  --w-green-mark:#31EE33;    /* vivid green for small marks */
+  --w-green-ink:#0A7B4F;
+  --w-green-soft:#E5F7F4;
+  --w-ink:#253035;           /* body text */
+  --w-ink-2:#5C6D88;
+  --w-muted:#718E9C;
+  --w-line:#E7EAEF;
+  --w-line-2:#F0F3F5;
+  --w-surface:#FFFFFF;
+  --w-surface-2:#F7F9FA;
+  --w-coral:#FA5A48;
+  --w-coral-ink:#C2321F;
+  --w-coral-soft:#FEEDEB;
+  --w-amber:#FFB100;
+  --w-shadow:0 1px 2px rgba(37,48,53,.04), 0 14px 34px -18px rgba(37,48,53,.22);
+  --w-sans:'Onest','Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --w-display:'Anta','Onest',ui-sans-serif,system-ui,sans-serif;
+  --w-mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-family:var(--w-sans);
+  color:var(--w-ink);
+  -webkit-font-smoothing:antialiased;
+}
+/* The page ground, on <body>, so the doc owns its background in both themes. */
+.wl-page{background:#F2F5F6;color:#253035}
+.dark .wl-page{background:#12161B;color:#EDF1F3}
+.dark .wl-doc{
+  --w-blue:#4770FF;
+  --w-blue-ink:#96AFFF;
+  --w-blue-soft:rgba(71,112,255,.16);
+  --w-green-ink:#74F286;
+  --w-green-mark:#74F286;
+  --w-green-soft:rgba(116,242,134,.12);
+  --w-ink:#EDF1F3;
+  --w-ink-2:#A9B6BE;
+  --w-muted:#8A9AA3;
+  --w-line:rgba(255,255,255,.10);
+  --w-line-2:rgba(255,255,255,.06);
+  --w-surface:#1B2028;
+  --w-surface-2:rgba(255,255,255,.035);
+  --w-coral-ink:#FF9184;
+  --w-coral-soft:rgba(250,90,72,.13);
+  --w-shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -20px rgba(0,0,0,.75);
+  color:var(--w-ink);
+}
+
+/* ---- reading progress ---- */
+.wl-progress{position:fixed;inset:0 auto auto 0;z-index:70;height:3px;width:100%;background:transparent;pointer-events:none}
+.wl-progress i{display:block;height:100%;width:0;border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,var(--w-blue),var(--w-green));transition:width .12s linear}
+
+/* ---- surfaces ---- */
+.wl-card{background:var(--w-surface);border:1px solid var(--w-line);border-radius:24px;box-shadow:var(--w-shadow)}
+
+/* ---- brand line ---- */
+.wl-wordmark{font-family:var(--w-display);letter-spacing:-.02em;line-height:1;color:var(--w-ink)}
+.wl-wordmark span{color:var(--w-blue-ink)}
+/* Stand-in mark in walllet's own display face - swap for the real logo SVG. */
+.wl-brand-mark{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:12px;
+  background:var(--w-blue);color:#fff;font-family:var(--w-display);font-size:19px;line-height:1;padding-bottom:2px}
+
+/* ---- document header ---- */
+.wl-top{position:sticky;top:0;z-index:60;margin:0 0 2px;
+  background:color-mix(in srgb,var(--w-surface) 82%,transparent);
+  border:1px solid var(--w-line);border-radius:20px;box-shadow:var(--w-shadow);
+  backdrop-filter:saturate(1.5) blur(14px)}
+.wl-top-in{display:flex;align-items:center;gap:14px;padding:11px 14px;flex-wrap:wrap}
+.wl-brand{display:inline-flex;align-items:center;gap:11px;min-width:0}
+.wl-top-doc{display:none;align-items:center;gap:9px;padding-left:15px;border-left:1px solid var(--w-line);
+  font-size:13.5px;color:var(--w-muted);white-space:nowrap}
+.wl-top-act{display:flex;align-items:center;gap:8px;margin-left:auto}
+.wl-cta--sm{padding:11px 18px;font-size:13.5px}
+/* No display here: the two buttons swap via Tailwind's grid/hidden utilities,
+   and a display declared on this class would outrank them by source order. */
+.wl-theme{place-items:center;width:40px;height:40px;border-radius:999px;
+  border:1px solid var(--w-line);background:var(--w-surface);color:var(--w-ink-2);cursor:pointer;transition:.15s}
+.wl-theme:hover{border-color:var(--w-blue);color:var(--w-blue-ink)}
+.wl-theme svg{width:19px;height:19px}
+@media (min-width:860px){.wl-top-doc{display:flex}.wl-top-in{padding:11px 18px}}
+
+/* ---- document footer ---- */
+.wl-foot{border-top:1px solid var(--w-line);margin-top:6px;padding:34px 4px 10px;
+  display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:26px}
+.wl-foot-links{display:flex;flex-wrap:wrap;gap:9px}
+.wl-foot-link{display:inline-flex;align-items:center;gap:7px;border-radius:999px;border:1px solid var(--w-line);
+  padding:9px 15px;font-size:13.5px;font-weight:500;color:var(--w-ink-2);transition:.15s}
+.wl-foot-link:hover{border-color:var(--w-blue);color:var(--w-blue-ink)}
+.wl-foot-note{width:100%;font-size:12.5px;line-height:1.6;color:var(--w-muted);
+  border-top:1px solid var(--w-line-2);padding-top:18px}
+
+/* Hide the disclosure triangle on the mobile step index in every engine. */
+.wl-doc summary{list-style:none}
+.wl-doc summary::-webkit-details-marker{display:none}
+.wl-idx-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer}
+.wl-idx-chev{transition:transform .2s}
+.wl-doc details[open] .wl-idx-chev{transform:rotate(180deg)}
+
+/* ---- hero ---- */
+.wl-eyebrow{display:inline-flex;align-items:center;gap:8px;border-radius:999px;
+  background:var(--w-blue-soft);color:var(--w-blue-ink);
+  padding:7px 14px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.wl-h1{font-size:clamp(30px,5.1vw,54px);line-height:1.04;letter-spacing:-.035em;font-weight:600;color:var(--w-ink)}
+.wl-h2{font-size:clamp(24px,3.4vw,38px);line-height:1.12;letter-spacing:-.03em;font-weight:600;color:var(--w-ink)}
+/* walllet closes its headlines with a full stop in the secondary green
+   ("get paid Globally."). Every heading on this page ends the same way. */
+.wl-dot{color:var(--w-green)}
+/* Secondary green marks the finished states: the last step and the sign-off. */
+.wl-eyebrow--done{background:var(--w-green-soft);color:var(--w-green-ink)}
+.wl-num--done{background:var(--w-green);color:#1B2028}
+/* Their live-status pill: a bright green dot over a softer pulse ring. */
+.wl-live{position:relative;display:inline-grid;place-items:center;width:9px;height:9px;flex:none}
+.wl-live::before,.wl-live::after{content:"";position:absolute;inset:0;border-radius:999px;background:#31EE33}
+.wl-live::before{opacity:.5;transform:scale(2)}
+@media (prefers-reduced-motion:no-preference){
+  .wl-live::before{animation:wl-pulse 2.4s ease-out infinite}
+}
+@keyframes wl-pulse{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(2.6);opacity:0}}
+.wl-lede{font-size:clamp(16px,1.7vw,20px);line-height:1.65;color:var(--w-ink-2);max-width:62ch}
+.wl-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;
+  background:var(--w-blue);color:#fff;padding:15px 26px;font-size:15px;font-weight:600;line-height:1;
+  transition:transform .18s cubic-bezier(.34,1.4,.64,1),box-shadow .18s;box-shadow:0 10px 24px -12px rgba(19,50,163,.7)}
+.wl-cta:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(19,50,163,.8)}
+.wl-cta--ghost{background:transparent;color:var(--w-ink);border:1px solid var(--w-line);box-shadow:none}
+.wl-cta--ghost:hover{border-color:var(--w-blue);color:var(--w-blue-ink);box-shadow:none}
+
+.wl-stat{border:1px solid var(--w-line);border-radius:18px;background:var(--w-surface-2);padding:16px 18px}
+.wl-stat-v{display:block;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.025em;line-height:1.1;color:var(--w-ink)}
+.wl-stat-l{display:block;margin-top:4px;font-size:12.5px;line-height:1.35;color:var(--w-muted)}
+
+/* ---- phase cards in the hero ---- */
+.wl-phase{display:flex;gap:14px;align-items:flex-start;border:1px solid var(--w-line);border-radius:18px;
+  background:var(--w-surface-2);padding:16px 18px;transition:border-color .16s,transform .16s}
+.wl-phase:hover{border-color:var(--w-blue);transform:translateY(-2px)}
+.wl-phase-letter{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:12px;
+  background:var(--w-blue);color:#fff;font-family:var(--w-display);font-size:15px}
+.wl-phase-text{display:block;min-width:0}
+.wl-phase-title{display:block;font-size:15.5px;font-weight:600;color:var(--w-ink)}
+.wl-phase-blurb{display:block;margin-top:3px;font-size:13.5px;line-height:1.5;color:var(--w-muted)}
+.wl-phase-range{display:block;margin-top:7px;font-family:var(--w-mono);font-size:11.5px;color:var(--w-blue-ink)}
+
+/* ---- phase divider in the stream ---- */
+.wl-phase-head{display:flex;gap:18px;align-items:flex-start;padding:16px 4px 0}
+.wl-phase-badge{flex:none;display:grid;place-items:center;width:50px;height:50px;border-radius:16px;
+  background:var(--w-blue);color:#fff;font-family:var(--w-display);font-size:21px}
+.wl-phase-kicker{font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--w-muted)}
+.wl-phase-h2{margin-top:4px;font-size:clamp(22px,2.7vw,32px);line-height:1.15;letter-spacing:-.03em;font-weight:600;color:var(--w-ink)}
+.wl-phase-sub{margin-top:6px;font-size:15px;line-height:1.6;color:var(--w-ink-2);max-width:58ch}
+
+/* ---- step index ---- */
+/* One screen at a time once JS is up. Without JS every step stays visible,
+   so the page still reads end to end. */
+.is-hidden{display:none !important}
+
+/* ---- guide app shell ----
+   The hero stays an ordinary scrolling page. Inside the guide the page stops
+   being a document: the header holds, the index and the step body get their
+   own scrollbars, the pager is pinned, and the site footer drops away so the
+   walk-through is the whole screen. */
+html.wl-app, html.wl-app body{height:100%;overflow:hidden}
+.wl-doc.is-step{height:100vh;height:100dvh;overflow:hidden}
+.wl-doc.is-step .wl-foot{display:none}
+.wl-doc.is-step main{flex:1;min-height:0;display:flex;flex-direction:column}
+.wl-doc.is-step .wl-guide{flex:1;min-height:0;align-items:stretch}
+.wl-doc.is-step .wl-stage{display:flex;flex-direction:column;min-height:0;gap:14px}
+.wl-doc.is-step .wl-stage-scroll{flex:1;min-height:0;overflow-y:auto;
+  overscroll-behavior:contain;padding-right:4px}
+.wl-doc.is-step .wl-pager{flex:none;margin-top:0}
+@media (min-width:1024px){
+  .wl-doc.is-step .wl-rail{min-height:0}
+  .wl-doc.is-step .wl-rail nav{display:flex;flex-direction:column;height:100%;min-height:0}
+  .wl-doc.is-step .wl-idx-scroll{flex:1;min-height:0;max-height:none;overflow-y:auto;
+    overscroll-behavior:contain}
+}
+@media (max-width:1023px){
+  .wl-doc.is-step .wl-guide{display:flex;flex-direction:column;gap:16px}
+}
+/* Slim scrollbars so two side-by-side panes do not read as two documents. */
+.wl-stage-scroll::-webkit-scrollbar,.wl-idx-scroll::-webkit-scrollbar{width:10px}
+.wl-stage-scroll::-webkit-scrollbar-thumb,.wl-idx-scroll::-webkit-scrollbar-thumb{
+  background:var(--w-line);border-radius:999px;border:3px solid transparent;background-clip:content-box}
+.wl-stage-scroll::-webkit-scrollbar-track,.wl-idx-scroll::-webkit-scrollbar-track{background:transparent}
+
+/* ---- step pager ---- */
+.wl-pager{display:none;align-items:center;gap:14px;margin-top:4px;flex-wrap:wrap;
+  border-radius:20px;border:1px solid var(--w-line);background:var(--w-surface);
+  box-shadow:var(--w-shadow);padding:12px 16px}
+.wl-js .wl-pager{display:flex}
+.wl-pg{display:inline-flex;align-items:center;gap:9px;border-radius:999px;border:1px solid var(--w-line);
+  background:var(--w-surface);padding:13px 22px;font-size:14px;font-weight:600;color:var(--w-ink);
+  cursor:pointer;transition:.16s}
+.wl-pg:hover:not(:disabled){border-color:var(--w-blue);color:var(--w-blue-ink)}
+.wl-pg:disabled{opacity:.35;cursor:not-allowed}
+.wl-pg--next{background:var(--w-blue);border-color:transparent;color:#fff;
+  box-shadow:0 10px 24px -12px rgba(19,50,163,.7)}
+.wl-pg--next:hover:not(:disabled){color:#fff;border-color:transparent;transform:translateY(-2px)}
+.wl-pg-mid{margin:0 auto;font-size:13px;color:var(--w-muted);font-variant-numeric:tabular-nums}
+
+.wl-idx-group + .wl-idx-group{margin-top:30px}
+.wl-idx-phase{display:flex;align-items:center;gap:10px;padding:0 2px;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--w-muted)}
+.wl-idx-letter{display:grid;place-items:center;width:20px;height:20px;border-radius:7px;
+  background:var(--w-line);color:var(--w-ink-2);font-family:var(--w-display);font-size:11px;letter-spacing:0}
+.wl-idx-list{margin-top:12px;display:flex;flex-direction:column;gap:4px}
+.wl-idx-link{display:flex;gap:11px;align-items:flex-start;border-radius:12px;padding:11px 12px;
+  font-size:13.4px;line-height:1.45;color:var(--w-ink-2);cursor:pointer;
+  transition:background .14s,color .14s}
+.wl-idx-link:hover{background:var(--w-line-2);color:var(--w-ink)}
+.wl-idx-num{flex:none;display:grid;place-items:center;width:21px;height:21px;border-radius:50%;
+  border:1px solid var(--w-line);background:var(--w-surface);font-size:10.5px;font-variant-numeric:tabular-nums;color:var(--w-muted)}
+.wl-idx-link.is-current{background:var(--w-blue-soft);color:var(--w-blue-ink);font-weight:600}
+.wl-idx-link.is-current .wl-idx-num{border-color:var(--w-blue-ink);color:var(--w-blue-ink);background:transparent}
+
+/* ---- step card ---- */
+.wl-step{background:var(--w-surface);border:1px solid var(--w-line);border-radius:24px;
+  box-shadow:var(--w-shadow);padding:22px;scroll-margin-top:92px}
+@media (min-width:640px){.wl-step{padding:30px}}
+@media (min-width:1024px){.wl-step{padding:40px}}
+.wl-step-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.wl-chip{display:inline-flex;align-items:center;border-radius:999px;padding:5px 12px;font-size:11px;
+  font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.wl-chip--phase{background:var(--w-blue-soft);color:var(--w-blue-ink)}
+.wl-chip--screen{background:var(--w-line-2);border:1px solid var(--w-line);color:var(--w-muted);
+  font-family:var(--w-mono);font-size:11px;font-weight:400;letter-spacing:0;text-transform:none}
+.wl-step-head{display:flex;align-items:flex-start;gap:16px;margin-top:18px}
+.wl-num{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:15px;
+  background:var(--w-blue);color:#fff;font-size:16px;font-weight:600;font-variant-numeric:tabular-nums}
+.wl-step-title{font-size:clamp(20px,2.2vw,27px);line-height:1.22;letter-spacing:-.025em;font-weight:600;
+  color:var(--w-ink);padding-top:8px}
+.wl-step-body{display:grid;gap:30px;margin-top:26px}
+@media (min-width:1024px){
+  .wl-step-body{grid-template-columns:minmax(0,1fr) minmax(250px,380px);gap:48px;margin-top:32px}
+  .wl-step-body--solo{grid-template-columns:minmax(0,1fr)}
+}
+
+/* ---- prose ---- */
+.wl-prose{max-width:72ch;min-width:0}
+.wl-prose b,.wl-prose strong{font-weight:600;color:var(--w-ink)}
+.wl-prose i,.wl-prose em{font-style:italic}
+.wl-p{font-size:16.5px;line-height:1.7;color:var(--w-ink-2)}
+.wl-p + .wl-p{margin-top:14px}
+.wl-label{margin-top:30px;font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--w-muted)}
+.wl-prose > :first-child.wl-label{margin-top:0}
+.wl-code{display:inline-block;font-family:var(--w-mono);font-size:12px;background:var(--w-line-2);
+  border:1px solid var(--w-line);color:var(--w-ink-2);padding:1px 7px;border-radius:7px;white-space:nowrap}
+.wl-ref{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;
+  background:var(--w-blue);color:#fff;font-size:10.5px;font-weight:700;line-height:1;
+  vertical-align:1px;margin:0 2px;font-variant-numeric:tabular-nums}
+
+/* ---- checklist ---- */
+.wl-fields{margin-top:12px;border:1px solid var(--w-line);border-radius:18px;overflow:hidden;background:var(--w-surface-2)}
+.wl-field{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--w-line);
+  font-size:15.2px;line-height:1.6;color:var(--w-ink-2)}
+.wl-field:first-child{border-top:0}
+.wl-field-dot{flex:none;margin-top:.55em;width:8px;height:8px;border-radius:50%;
+  background:var(--w-green-mark);box-shadow:0 0 0 3px var(--w-green-soft)}
+
+/* ---- callouts ---- */
+.wl-note{display:flex;gap:13px;align-items:flex-start;margin-top:12px;padding:14px 16px;border-radius:18px;
+  border:1px solid transparent;font-size:15.2px;line-height:1.65}
+.wl-note-ic{flex:none;display:grid;place-items:center;width:26px;height:26px;border-radius:9px;color:#fff}
+.wl-note-ic svg{width:16px;height:16px}
+.wl-note-body{min-width:0;color:var(--w-ink-2)}
+.wl-note-label{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.wl-note--warn{background:var(--w-coral-soft);border-color:rgba(250,90,72,.22)}
+.wl-note--warn .wl-note-ic{background:var(--w-coral)}
+.wl-note--warn .wl-note-label{color:var(--w-coral-ink)}
+.wl-note--tip{background:var(--w-blue-soft);border-color:rgba(19,50,163,.14)}
+.wl-note--tip .wl-note-ic{background:var(--w-blue)}
+.wl-note--tip .wl-note-label{color:var(--w-blue-ink)}
+.wl-note--info{background:var(--w-surface-2);border-color:var(--w-line)}
+.wl-note--info .wl-note-ic{background:var(--w-muted)}
+.wl-note--info .wl-note-label{color:var(--w-muted)}
+.dark .wl-note--tip{border-color:rgba(71,112,255,.28)}
+
+/* ---- lookup table ---- */
+.wl-panel{margin-top:12px;border:1px solid var(--w-line);border-radius:18px;overflow:hidden;background:var(--w-surface-2)}
+.wl-row{display:grid;gap:4px;padding:13px 16px;border-top:1px solid var(--w-line);font-size:14.6px;line-height:1.5}
+.wl-row:first-child{border-top:0}
+.wl-did{color:var(--w-ink-2)}
+.wl-pick{font-weight:600;color:var(--w-ink)}
+@media (min-width:640px){.wl-row{grid-template-columns:1.05fr 1fr;gap:18px;align-items:baseline}}
+
+/* ---- prompt ---- */
+.wl-prompt{margin-top:12px;border:1px solid var(--w-line);border-radius:18px;overflow:hidden;background:var(--w-surface-2)}
+.wl-prompt-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:9px 12px 9px 16px;border-bottom:1px solid var(--w-line)}
+.wl-prompt-tag{font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--w-blue-ink)}
+.wl-copy{display:inline-flex;align-items:center;gap:7px;border-radius:999px;border:1px solid var(--w-line);
+  background:var(--w-surface);padding:6px 13px;font-size:12.5px;font-weight:600;color:var(--w-ink-2);
+  cursor:pointer;transition:.15s}
+.wl-copy svg{width:14px;height:14px}
+.wl-copy:hover{border-color:var(--w-blue);color:var(--w-blue-ink)}
+.wl-copy.is-done{border-color:var(--w-green-ink);color:var(--w-green-ink)}
+.wl-pre{margin:0;padding:16px;font-family:var(--w-mono);font-size:13px;line-height:1.65;
+  color:var(--w-ink-2);white-space:pre-wrap;overflow-wrap:break-word}
+
+/* ---- screenshots ---- */
+.wl-shots{display:flex;flex-wrap:wrap;gap:22px;align-content:flex-start}
+.wl-shot{position:relative;flex:1 1 155px;max-width:250px;margin:0}
+.wl-shotnum{position:absolute;left:-8px;top:-8px;z-index:2;display:grid;place-items:center;
+  width:27px;height:27px;border-radius:50%;background:var(--w-blue);color:#fff;font-size:12.5px;font-weight:700;
+  font-variant-numeric:tabular-nums;box-shadow:0 4px 12px -4px rgba(37,48,53,.5);
+  outline:3px solid var(--w-surface)}
+.wl-shot-link{display:block;position:relative;border-radius:26px}
+.wl-phone{display:block;border-radius:26px;background:#1B2028;padding:6px;
+  box-shadow:var(--w-shadow);transition:transform .2s cubic-bezier(.34,1.4,.64,1)}
+.dark .wl-phone{background:#000;outline:1px solid rgba(255,255,255,.1)}
+.wl-phone-img{display:block;width:100%;height:auto;border-radius:21px}
+.wl-shot-link:hover .wl-phone{transform:translateY(-3px)}
+.wl-zoom{position:absolute;left:50%;bottom:14px;transform:translate(-50%,6px);display:inline-flex;
+  align-items:center;gap:6px;border-radius:999px;background:rgba(27,32,40,.9);color:#fff;
+  padding:6px 12px;font-size:11.5px;font-weight:600;white-space:nowrap;
+  opacity:0;transition:opacity .18s,transform .18s;backdrop-filter:blur(6px)}
+.wl-zoom svg{width:13px;height:13px}
+.wl-shot-link:hover .wl-zoom,.wl-shot-link:focus-visible .wl-zoom{opacity:1;transform:translate(-50%,0)}
+.wl-cap{margin-top:11px;font-size:12.8px;line-height:1.5;color:var(--w-muted);text-align:center}
+
+/* On wide screens the rail sits beside prose that is often several times
+   taller, so it sticks: the screens stay in view while you read the step
+   instead of leaving a tall empty column beside the text. */
+@media (min-width:1024px){
+  .wl-shots{gap:26px;position:sticky;top:92px;align-self:start}
+  .wl-shot{flex:1 1 150px;max-width:240px}
+}
+
+/* ---- closing ---- */
+.wl-end-note{font-size:13.5px;line-height:1.6;color:var(--w-muted)}
+
+.wl-doc a:focus-visible,.wl-doc button:focus-visible{outline:2px solid var(--w-blue-ink);outline-offset:3px;border-radius:12px}
+@media (prefers-reduced-motion:reduce){
+  .wl-doc *{transition-duration:.01ms !important}
+  .wl-cta:hover,.wl-phase:hover,.wl-shot-link:hover .wl-phone{transform:none}
+}
+	</style>
+</head>
+
+<script src="./assets/js/theme.js"></script>
+
+<body class="wl-page relative h-screen overflow-y-auto overflow-x-hidden">
+
+	<div class="wl-progress" aria-hidden="true"><i></i></div>
+
+	<div class="wl-doc mx-auto flex max-w-screen-2xl flex-col p-4 lg:p-6">
+
+		<!-- Document header -->
+		<header class="wl-top">
+			<div class="wl-top-in">
+				<a class="wl-brand" href="#intro" data-wl-go="0" aria-label="Back to the overview">
+					<span class="wl-brand-mark" aria-hidden="true">w</span>
+					<span class="wl-wordmark text-xl sm:text-[22px]">walllet<span>.com</span></span>
+				</a>
+				<span class="wl-top-doc"><span class="wl-live" aria-hidden="true"></span> Business account verification</span>
+
+				<div class="wl-top-act">
+					<button type="button" class="wl-theme hs-dark-mode grid hs-dark-mode-active:hidden" data-hs-theme-click-value="dark" aria-label="Switch to dark mode">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M11.8 3a8.656 8.656 0 0 0-4.523 1.28A8.918 8.918 0 0 0 4.04 7.756a9.167 9.167 0 0 0 .44 9.24 8.863 8.863 0 0 0 3.553 3.137 8.633 8.633 0 0 0 4.624.824 8.69 8.69 0 0 0 4.381-1.723 8.973 8.973 0 0 0 2.892-3.78c.3-.738-.419-1.48-1.142-1.179a5.604 5.604 0 0 1-3.892.15 5.74 5.74 0 0 1-3.083-2.431 5.956 5.956 0 0 1-.848-3.886c.17-1.357.8-2.61 1.78-3.541l.069-.072c.485-.567.099-1.488-.668-1.488h-.234l-.06-.005L11.8 3Z" /></svg>
+					</button>
+					<button type="button" class="wl-theme hs-dark-mode hidden hs-dark-mode-active:grid" data-hs-theme-click-value="light" aria-label="Switch to light mode">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 15.833a.833.833 0 0 1 .828.736l.005.098v.833a.833.833 0 0 1-1.66.097l-.006-.097v-.833a.833.833 0 0 1 .833-.834Zm5.26-1.741.08.069.582.583a.833.833 0 0 1-1.1 1.248l-.078-.07-.583-.583a.833.833 0 0 1 1.015-1.306l.085.059Zm-9.42.068a.833.833 0 0 1 .068 1.1l-.069.08-.583.582a.833.833 0 0 1-1.248-1.1l.07-.078.583-.583a.833.833 0 0 1 1.178 0ZM3.333 9.167a.833.833 0 0 1 .098 1.66l-.098.006H2.5a.833.833 0 0 1-.098-1.66l.098-.006h.833Zm14.167 0a.833.833 0 0 1 .098 1.66l-.098.006h-.833a.833.833 0 0 1-.098-1.66l.098-.006h.833ZM5.178 4.008l.078.07.583.583a.833.833 0 0 1-1.1 1.247l-.078-.069-.583-.583A.833.833 0 0 1 5.092 3.95l.086.058Zm10.744.069a.833.833 0 0 1 .07 1.1l-.07.079-.583.583a.833.833 0 0 1-1.247-1.1l.069-.078.583-.584a.833.833 0 0 1 1.178 0ZM10 1.667a.833.833 0 0 1 .828.736l.005.097v.833a.833.833 0 0 1-1.66.098l-.006-.098V2.5A.833.833 0 0 1 10 1.667Zm0 4.166a4.167 4.167 0 1 1-4.163 4.348L5.833 10l.004-.18A4.167 4.167 0 0 1 10 5.832Z" /></svg>
+					</button>
+					<!-- On the hero this starts the walk-through; inside it, it becomes the real CTA. -->
+					<a class="wl-cta wl-cta--sm hidden sm:inline-flex" id="wl-guide-cta" href="#step-1" data-wl-go="1">
+						Guide
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M4 10h12" /><path d="m11 5 5 5-5 5" /></svg>
+					</a>
+					<a class="wl-cta wl-cta--ghost wl-cta--sm is-hidden sm:inline-flex" id="wl-back-cta" href="#intro" data-wl-go="0">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M16 10H4" /><path d="m9 5-5 5 5 5" /></svg>
+						Overview
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<main class="mt-4 flex flex-col gap-6 lg:mt-6 lg:gap-8">
+
+			<!-- Overview screen: hero + phase roadmap -->
+			<div id="wl-overview" class="flex flex-col gap-6 lg:gap-8">
+			<!-- Hero -->
+			<section id="intro" class="wl-card overflow-hidden p-6 sm:p-9 lg:p-14">
+				<div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+					<div class="max-w-3xl">
+						<p class="wl-eyebrow">Business account &middot; KYB</p>
+						<p class="wl-wordmark mt-7 text-3xl sm:text-4xl">walllet<span>.com</span></p>
+						<h1 class="wl-h1 mt-5">Getting a business verified with Persona<span class="wl-dot">.</span></h1>
+						<p class="wl-lede mt-6">A complete walk-through of a real Bridge&nbsp;&times;&nbsp;Persona KYB application for a Walllet business account &mdash; every screen, in order, with the rules that are easy to trip over. Jump to any step from the index, or read it straight through.</p>
+						<div class="mt-9 flex flex-wrap items-center gap-3">
+							<a class="wl-cta" href="https://walllet.com/" target="_blank" rel="noopener">
+								Open your account
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M4 10h12" /><path d="m11 5 5 5-5 5" /></svg>
+							</a>
+							<a class="wl-cta wl-cta--ghost" href="#step-1" data-wl-go="1">Start at step 1</a>
+						</div>
+					</div>
+
+					<div class="grid w-full shrink-0 grid-cols-2 gap-3 sm:gap-4 lg:w-[380px]">
+<div class="wl-stat"><b class="wl-stat-v">25</b><span class="wl-stat-l">steps</span></div>
+<div class="wl-stat"><b class="wl-stat-v">43</b><span class="wl-stat-l">screens</span></div>
+<div class="wl-stat"><b class="wl-stat-v">~55 min</b><span class="wl-stat-l">start to finish</span></div>
+<div class="wl-stat"><b class="wl-stat-v">2</b><span class="wl-stat-l">sessions (business + personal)</span></div>
+					</div>
+				</div>
+
+				<div class="wl-note wl-note--warn mt-11">
+					<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+					<div class="wl-note-body"><span class="wl-note-label">Before you start</span>Persona does not save progress. Each of the two sessions must be finished in one sitting, so gather every document first. Details in step&nbsp;2.</div>
+				</div>
+			</section>
+
+			<!-- Roadmap -->
+			<section class="wl-card p-6 sm:p-9 lg:p-10" aria-labelledby="wl-roadmap-h">
+				<h2 id="wl-roadmap-h" class="wl-label" style="margin-top:0">The five phases</h2>
+				<div class="mt-5 grid gap-3 sm:gap-4 md:grid-cols-2 xl:grid-cols-3">
+<a class="wl-phase" href="#step-1" data-wl-go="1"><span class="wl-phase-letter" aria-hidden="true">A</span><span class="wl-phase-text"><b class="wl-phase-title">Consent &amp; entry</b><span class="wl-phase-blurb">Accept Bridge&rsquo;s terms and open the Persona verification flow.</span><span class="wl-phase-range">steps 1&ndash;2</span></span></a>
+<a class="wl-phase" href="#step-3" data-wl-go="3"><span class="wl-phase-letter" aria-hidden="true">B</span><span class="wl-phase-text"><b class="wl-phase-title">Business details</b><span class="wl-phase-blurb">Tell Persona who the legal entity is, what it does and who owns it.</span><span class="wl-phase-range">steps 3&ndash;6</span></span></a>
+<a class="wl-phase" href="#step-7" data-wl-go="7"><span class="wl-phase-letter" aria-hidden="true">C</span><span class="wl-phase-text"><b class="wl-phase-title">Business documents</b><span class="wl-phase-blurb">Upload the evidence pack: registration, address, good standing, tax.</span><span class="wl-phase-range">steps 7&ndash;12</span></span></a>
+<a class="wl-phase" href="#step-13" data-wl-go="13"><span class="wl-phase-letter" aria-hidden="true">D</span><span class="wl-phase-text"><b class="wl-phase-title">Funds &amp; risk profile</b><span class="wl-phase-blurb">Explain where money comes from and how the account will be used.</span><span class="wl-phase-range">steps 13&ndash;16</span></span></a>
+<a class="wl-phase" href="#step-17" data-wl-go="17"><span class="wl-phase-letter" aria-hidden="true">E</span><span class="wl-phase-text"><b class="wl-phase-title">Individual verification</b><span class="wl-phase-blurb">Each owner / control person proves who they are (KYC).</span><span class="wl-phase-range">steps 17&ndash;25</span></span></a>
+				</div>
+			</section>
+
+			</div>
+
+			<!-- Index + steps -->
+			<div class="wl-guide grid items-start gap-6 lg:grid-cols-[262px_minmax(0,1fr)] lg:gap-8">
+
+				<!-- Step index, desktop -->
+				<aside class="wl-rail hidden lg:block">
+					<nav class="wl-card p-6 lg:p-7" aria-label="Steps">
+						<p class="wl-label" style="margin-top:0">All 25 steps</p>
+						<div class="wl-idx-scroll mt-6 max-h-[calc(100vh_-_196px)] overflow-y-auto pr-2">
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">A</span>Consent &amp; entry</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-1" data-wl-idx="1"><span class="wl-idx-num">1</span><span class="wl-idx-t">Accept the Bridge terms</span></a></li>
+<li><a class="wl-idx-link" href="#step-2" data-wl-idx="2"><span class="wl-idx-num">2</span><span class="wl-idx-t">Persona opens &mdash; read the warning</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">B</span>Business details</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-3" data-wl-idx="3"><span class="wl-idx-num">3</span><span class="wl-idx-t">Where is your business registered?</span></a></li>
+<li><a class="wl-idx-link" href="#step-4" data-wl-idx="4"><span class="wl-idx-num">4</span><span class="wl-idx-t">Fill in the business identity block</span></a></li>
+<li><a class="wl-idx-link" href="#step-5" data-wl-idx="5"><span class="wl-idx-num">5</span><span class="wl-idx-t">Industry, description and addresses</span></a></li>
+<li><a class="wl-idx-link" href="#step-6" data-wl-idx="6"><span class="wl-idx-num">6</span><span class="wl-idx-t">Declare the owners, then attest</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">C</span>Business documents</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-7" data-wl-idx="7"><span class="wl-idx-num">7</span><span class="wl-idx-t">The document checklist appears</span></a></li>
+<li><a class="wl-idx-link" href="#step-8" data-wl-idx="8"><span class="wl-idx-num">8</span><span class="wl-idx-t">Upload the company registration letter</span></a></li>
+<li><a class="wl-idx-link" href="#step-9" data-wl-idx="9"><span class="wl-idx-num">9</span><span class="wl-idx-t">Upload the business proof of address</span></a></li>
+<li><a class="wl-idx-link" href="#step-10" data-wl-idx="10"><span class="wl-idx-num">10</span><span class="wl-idx-t">Prove the entity is active</span></a></li>
+<li><a class="wl-idx-link" href="#step-11" data-wl-idx="11"><span class="wl-idx-num">11</span><span class="wl-idx-t">Foreign tax registration</span></a></li>
+<li><a class="wl-idx-link" href="#step-12" data-wl-idx="12"><span class="wl-idx-num">12</span><span class="wl-idx-t">Submit the document pack</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">D</span>Funds &amp; risk profile</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-13" data-wl-idx="13"><span class="wl-idx-num">13</span><span class="wl-idx-t">What happens next, explained</span></a></li>
+<li><a class="wl-idx-link" href="#step-14" data-wl-idx="14"><span class="wl-idx-num">14</span><span class="wl-idx-t">Where the money comes from</span></a></li>
+<li><a class="wl-idx-link" href="#step-15" data-wl-idx="15"><span class="wl-idx-num">15</span><span class="wl-idx-t">Restricted countries and high-risk activities</span></a></li>
+<li><a class="wl-idx-link" href="#step-16" data-wl-idx="16"><span class="wl-idx-num">16</span><span class="wl-idx-t">How the account will be used</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">E</span>Individual verification</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-17" data-wl-idx="17"><span class="wl-idx-num">17</span><span class="wl-idx-t">The individual verification email</span></a></li>
+<li><a class="wl-idx-link" href="#step-18" data-wl-idx="18"><span class="wl-idx-num">18</span><span class="wl-idx-t">Biometric consent and the personal checklist</span></a></li>
+<li><a class="wl-idx-link" href="#step-19" data-wl-idx="19"><span class="wl-idx-num">19</span><span class="wl-idx-t">Where do you live?</span></a></li>
+<li><a class="wl-idx-link" href="#step-20" data-wl-idx="20"><span class="wl-idx-num">20</span><span class="wl-idx-t">Your personal details</span></a></li>
+<li><a class="wl-idx-link" href="#step-21" data-wl-idx="21"><span class="wl-idx-num">21</span><span class="wl-idx-t">Which ID are you using?</span></a></li>
+<li><a class="wl-idx-link" href="#step-22" data-wl-idx="22"><span class="wl-idx-num">22</span><span class="wl-idx-t">Photograph your ID</span></a></li>
+<li><a class="wl-idx-link" href="#step-23" data-wl-idx="23"><span class="wl-idx-num">23</span><span class="wl-idx-t">Your personal proof of address</span></a></li>
+<li><a class="wl-idx-link" href="#step-24" data-wl-idx="24"><span class="wl-idx-num">24</span><span class="wl-idx-t">Confirm your role and stake</span></a></li>
+<li><a class="wl-idx-link" href="#step-25" data-wl-idx="25"><span class="wl-idx-num">25</span><span class="wl-idx-t">All rows green &mdash; submitted</span></a></li>
+</ul>
+</div>
+						</div>
+					</nav>
+				</aside>
+
+				<!-- Step index, mobile -->
+				<details id="wl-idx-mobile" class="wl-card p-6 lg:hidden">
+					<summary class="wl-idx-summary">
+						<span class="wl-label" style="margin-top:0">Jump to a step &mdash; all 25</span>
+						<svg class="wl-idx-chev h-4 w-4 shrink-0" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 8 5 5 5-5" /></svg>
+					</summary>
+					<div class="mt-4">
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">A</span>Consent &amp; entry</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-1" data-wl-idx="1"><span class="wl-idx-num">1</span><span class="wl-idx-t">Accept the Bridge terms</span></a></li>
+<li><a class="wl-idx-link" href="#step-2" data-wl-idx="2"><span class="wl-idx-num">2</span><span class="wl-idx-t">Persona opens &mdash; read the warning</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">B</span>Business details</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-3" data-wl-idx="3"><span class="wl-idx-num">3</span><span class="wl-idx-t">Where is your business registered?</span></a></li>
+<li><a class="wl-idx-link" href="#step-4" data-wl-idx="4"><span class="wl-idx-num">4</span><span class="wl-idx-t">Fill in the business identity block</span></a></li>
+<li><a class="wl-idx-link" href="#step-5" data-wl-idx="5"><span class="wl-idx-num">5</span><span class="wl-idx-t">Industry, description and addresses</span></a></li>
+<li><a class="wl-idx-link" href="#step-6" data-wl-idx="6"><span class="wl-idx-num">6</span><span class="wl-idx-t">Declare the owners, then attest</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">C</span>Business documents</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-7" data-wl-idx="7"><span class="wl-idx-num">7</span><span class="wl-idx-t">The document checklist appears</span></a></li>
+<li><a class="wl-idx-link" href="#step-8" data-wl-idx="8"><span class="wl-idx-num">8</span><span class="wl-idx-t">Upload the company registration letter</span></a></li>
+<li><a class="wl-idx-link" href="#step-9" data-wl-idx="9"><span class="wl-idx-num">9</span><span class="wl-idx-t">Upload the business proof of address</span></a></li>
+<li><a class="wl-idx-link" href="#step-10" data-wl-idx="10"><span class="wl-idx-num">10</span><span class="wl-idx-t">Prove the entity is active</span></a></li>
+<li><a class="wl-idx-link" href="#step-11" data-wl-idx="11"><span class="wl-idx-num">11</span><span class="wl-idx-t">Foreign tax registration</span></a></li>
+<li><a class="wl-idx-link" href="#step-12" data-wl-idx="12"><span class="wl-idx-num">12</span><span class="wl-idx-t">Submit the document pack</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">D</span>Funds &amp; risk profile</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-13" data-wl-idx="13"><span class="wl-idx-num">13</span><span class="wl-idx-t">What happens next, explained</span></a></li>
+<li><a class="wl-idx-link" href="#step-14" data-wl-idx="14"><span class="wl-idx-num">14</span><span class="wl-idx-t">Where the money comes from</span></a></li>
+<li><a class="wl-idx-link" href="#step-15" data-wl-idx="15"><span class="wl-idx-num">15</span><span class="wl-idx-t">Restricted countries and high-risk activities</span></a></li>
+<li><a class="wl-idx-link" href="#step-16" data-wl-idx="16"><span class="wl-idx-num">16</span><span class="wl-idx-t">How the account will be used</span></a></li>
+</ul>
+</div>
+<div class="wl-idx-group">
+<p class="wl-idx-phase"><span class="wl-idx-letter" aria-hidden="true">E</span>Individual verification</p>
+<ul class="wl-idx-list">
+<li><a class="wl-idx-link" href="#step-17" data-wl-idx="17"><span class="wl-idx-num">17</span><span class="wl-idx-t">The individual verification email</span></a></li>
+<li><a class="wl-idx-link" href="#step-18" data-wl-idx="18"><span class="wl-idx-num">18</span><span class="wl-idx-t">Biometric consent and the personal checklist</span></a></li>
+<li><a class="wl-idx-link" href="#step-19" data-wl-idx="19"><span class="wl-idx-num">19</span><span class="wl-idx-t">Where do you live?</span></a></li>
+<li><a class="wl-idx-link" href="#step-20" data-wl-idx="20"><span class="wl-idx-num">20</span><span class="wl-idx-t">Your personal details</span></a></li>
+<li><a class="wl-idx-link" href="#step-21" data-wl-idx="21"><span class="wl-idx-num">21</span><span class="wl-idx-t">Which ID are you using?</span></a></li>
+<li><a class="wl-idx-link" href="#step-22" data-wl-idx="22"><span class="wl-idx-num">22</span><span class="wl-idx-t">Photograph your ID</span></a></li>
+<li><a class="wl-idx-link" href="#step-23" data-wl-idx="23"><span class="wl-idx-num">23</span><span class="wl-idx-t">Your personal proof of address</span></a></li>
+<li><a class="wl-idx-link" href="#step-24" data-wl-idx="24"><span class="wl-idx-num">24</span><span class="wl-idx-t">Confirm your role and stake</span></a></li>
+<li><a class="wl-idx-link" href="#step-25" data-wl-idx="25"><span class="wl-idx-num">25</span><span class="wl-idx-t">All rows green &mdash; submitted</span></a></li>
+</ul>
+</div>
+					</div>
+				</details>
+
+				<div class="wl-stage">
+				<div id="wl-stream" class="wl-stage-scroll flex flex-col gap-6 lg:gap-8">
+<div class="wl-phase-head" id="phase-A" data-wl-phase="A">
+<span class="wl-phase-badge" aria-hidden="true">A</span>
+<div>
+<p class="wl-phase-kicker">Phase A &middot; steps 1&ndash;2</p>
+<h2 class="wl-phase-h2">Consent &amp; entry<span class="wl-dot">.</span></h2>
+<p class="wl-phase-sub">Accept Bridge&rsquo;s terms and open the Persona verification flow.</p>
+</div>
+</div>
+<section id="step-1" class="wl-step" data-wl-step="1" data-wl-group="A">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase A &middot; Consent &amp; entry</span>
+<span class="wl-chip wl-chip--screen">compliance.bridge.xyz</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">01</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 1. </span>Accept the Bridge terms</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The journey starts inside <b>Bridge</b>, the platform that actually opens the account. Before it can hand you to its verification vendor you have to accept its Terms of Service and Privacy Policy, after which it redirects you automatically.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Read the Terms of Service and Privacy Policy <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Accept</b></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>A green confirmation appears <span class="wl-ref">2</span> and Bridge redirects you</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Persona is only the <i>verification vendor</i>. Bridge is the company you are onboarding with &mdash; Persona collects and checks the evidence on its behalf.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+If the page seems to hang after accepting, do not open a second tab. Reload this one; Bridge re-uses the same inquiry.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s01-1.webp" data-gall="wl-step-1" aria-label="Enlarge: Screenshot of the compliance.bridge.xyz screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s01-1.webp" alt="Screenshot of the compliance.bridge.xyz screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s01-2.webp" data-gall="wl-step-1" aria-label="Enlarge: Screenshot of the compliance.bridge.xyz screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s01-2.webp" alt="Screenshot of the compliance.bridge.xyz screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Accepted &mdash; Bridge now builds your Persona inquiry in the background.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-2" class="wl-step" data-wl-step="2" data-wl-group="A">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase A &middot; Consent &amp; entry</span>
+<span class="wl-chip wl-chip--screen">bridge.withpersona.com</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">02</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 2. </span>Persona opens &mdash; read the warning</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">You are now on <code class="wl-code">bridge.withpersona.com</code>, the Persona-hosted business verification. The bold warning on this screen is the single most important sentence in the whole flow.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Get started</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Progress is not saved.</b> Close the tab before finishing and you re-enter everything from scratch. Budget 30&ndash;60 uninterrupted minutes.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Gather first: registration letter, incorporation date, registration number, full registered address, a 200+ character business description, and PDFs for proof of address and good standing.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s02-1.webp" data-gall="wl-step-2" aria-label="Enlarge: Screenshot of the bridge.withpersona.com screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s02-1.webp" alt="Screenshot of the bridge.withpersona.com screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<div class="wl-phase-head" id="phase-B" data-wl-phase="B">
+<span class="wl-phase-badge" aria-hidden="true">B</span>
+<div>
+<p class="wl-phase-kicker">Phase B &middot; steps 3&ndash;6</p>
+<h2 class="wl-phase-h2">Business details<span class="wl-dot">.</span></h2>
+<p class="wl-phase-sub">Tell Persona who the legal entity is, what it does and who owns it.</p>
+</div>
+</div>
+<section id="step-3" class="wl-step" data-wl-step="3" data-wl-group="B">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase B &middot; Business details</span>
+<span class="wl-chip wl-chip--screen">Business registration</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">03</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 3. </span>Where is your business registered?</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The first real question sets the rule-set for everything after it. The country of <i>registration</i> decides which documents Persona asks for later and whether you get EEA-specific questions.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Select the country where the entity is legally registered</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Answer <b>Does your business primarily operate in a different country?</b> &mdash; here: <i>No</i></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Answer <b>Yes</b> only if day-to-day operations genuinely sit elsewhere &mdash; it adds an operating-country branch and usually more documents.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+This country is locked into the address fields further down, so you cannot silently contradict yourself later.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s03-1.webp" data-gall="wl-step-3" aria-label="Enlarge: Screenshot of the Business registration screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s03-1.webp" alt="Screenshot of the Business registration screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-4" class="wl-step" data-wl-step="4" data-wl-group="B">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase B &middot; Business details</span>
+<span class="wl-chip wl-chip--screen">Business profile</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">04</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 4. </span>Fill in the business identity block</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The first full form. Everything here is cross-checked against the documents you upload in Phase&nbsp;C, so copy the values off the registration letter rather than from memory.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business legal name</b> &mdash; exactly as on the certificate</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business entity type</b> <span class="wl-ref">1</span> &mdash; here: <i>Sole proprietorship</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Incorporation date</b> &mdash; month / day / year</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>DBA / trade name</b> &mdash; optional</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Email address</b> and <b>phone number</b></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business website</b> &mdash; or tick <b>No website</b></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business registration number</b> <span class="wl-ref">2</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Strip the dots from an Armenian registration number.</b> Armenian certificates print it grouped &mdash; <code class="wl-code">123.456.7890</code> &mdash; but the field expects digits only: <code class="wl-code">1234567890</code>. Leave the dots out or the number will not match the registry.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+For a <b>sole proprietorship / IE</b> the legal name is usually the owner&rsquo;s own full name, not a brand name. The brand goes in the DBA field.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+Otherwise the registration number and legal name must match the certificate character-for-character, including leading zeros. A mismatch here is the most common cause of manual review.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+No website is fine &mdash; tick the box. The <i>proof of business activity</i> row in Phase&nbsp;C is satisfied by your registration letter either way (Step&nbsp;8).
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s04-1.webp" data-gall="wl-step-4" aria-label="Enlarge: Screenshot of the Business profile screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s04-1.webp" alt="Screenshot of the Business profile screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">The entity type list: Corporation, LLC, Trust, Partnership, Cooperative, Sole proprietorship, Other.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s04-2.webp" data-gall="wl-step-4" aria-label="Enlarge: Screenshot of the Business profile screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s04-2.webp" alt="Screenshot of the Business profile screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">The same form filled in. Tick <b>No website</b> if the business has none.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-5" class="wl-step" data-wl-step="5" data-wl-group="B">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase B &middot; Business details</span>
+<span class="wl-chip wl-chip--screen">Business profile</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">05</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 5. </span>Industry, description and addresses</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The second half of the business form &mdash; and where nearly everyone gets bounced back. Two of its rules are never shown until you tap <b>Continue</b>.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business industry (NAICS code)</b> <span class="wl-ref">1</span> &mdash; closest match, only one</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business description</b> &mdash; free text, 200 character minimum</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business registered address</b> &mdash; no P.O. boxes</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Business operating address</b> &mdash; tick <b>Same as Registered Address</b> if identical</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Is your entity a DAO?</b> &mdash; Yes / No</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Hidden rule 1 &mdash; only one industry.</b> The field behaves like a multi-select and accepts several tags, then rejects them <span class="wl-ref">2</span> with <i>&lsquo;The maximum allowed number of choices is 1&rsquo;</i>. Remove the extras with the small &times;.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>The NAICS code does not have to be an exact match.</b> It is a broad classification, not a legal declaration &mdash; pick the closest of the options below and let the description carry the specifics.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Hidden rule 2 &mdash; 200 character minimum</b> on the description <span class="wl-ref">2</span>. The text in the screenshot is only <b>160 characters</b>, which is exactly why it came back red. Aim for 250+ so you have margin.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>Let an AI write the description.</b> Paste your CV or a few bullet points into any AI assistant with the prompt below, then paste the result back. Draft it outside the form &mdash; the session is not saved, so you do not want to be composing text in a live field.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+The country row of the address is greyed out &mdash; inherited from the registration country in Step&nbsp;3.
+</div>
+</div>
+<h4 class="wl-label">Which NAICS industry to pick for IT</h4>
+<dl class="wl-panel">
+<div class="wl-row"><dt class="wl-did">You build software for clients &mdash; agency, freelance, outsourced dev</dt><dd class="wl-pick">Custom Computer Programming Services <span class="wl-code">541511</span></dd></div>
+<div class="wl-row"><dt class="wl-did">You sell or license your own product or SaaS</dt><dd class="wl-pick">Software Publishers <span class="wl-code">511210 / 513210</span></dd></div>
+<div class="wl-row"><dt class="wl-did">IT architecture, systems integration, technical advisory</dt><dd class="wl-pick">Computer Systems Design Services <span class="wl-code">541512</span></dd></div>
+<div class="wl-row"><dt class="wl-did">You run or manage a client&rsquo;s IT operations</dt><dd class="wl-pick">Computer Facilities Management Services <span class="wl-code">541513</span></dd></div>
+<div class="wl-row"><dt class="wl-did">Hosting, cloud infrastructure, data processing</dt><dd class="wl-pick">Data Processing, Hosting and Related Services <span class="wl-code">518210</span></dd></div>
+<div class="wl-row"><dt class="wl-did">IT work that fits none of the rows above</dt><dd class="wl-pick">Other Computer Related Services <span class="wl-code">541519</span></dd></div>
+<div class="wl-row"><dt class="wl-did">Courses, bootcamps, technical training</dt><dd class="wl-pick">Computer Training <span class="wl-code">611420</span></dd></div>
+<div class="wl-row"><dt class="wl-did">Web and UI design with little engineering</dt><dd class="wl-pick">Graphic Design Services <span class="wl-code">541430</span></dd></div>
+<div class="wl-row"><dt class="wl-did">General business or management consulting</dt><dd class="wl-pick">Administrative Management and General Management Consulting <span class="wl-code">541611</span></dd></div>
+</dl>
+<h4 class="wl-label">Prompt for writing the description</h4>
+<div class="wl-prompt">
+<div class="wl-prompt-bar">
+<span class="wl-prompt-tag">Prompt</span>
+<button type="button" class="wl-copy" data-wl-copy="wl-prompt-1">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V5.5A2.5 2.5 0 0 1 7.5 3H15"/></svg>
+<span class="wl-copy-text">Copy</span>
+</button>
+</div>
+<pre id="wl-prompt-1" class="wl-pre">Here is my CV / a summary of what my business does:
+[paste your resume or a few bullet points]
+
+Write a business description for a KYB verification form. Requirements: at least 250 characters, one paragraph, plain factual English with no marketing language. Say what services the business sells, who the customers are, and how it earns revenue.</pre>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s05-1.webp" data-gall="wl-step-5" aria-label="Enlarge: Screenshot of the Business profile screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s05-1.webp" alt="Screenshot of the Business profile screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s05-2.webp" data-gall="wl-step-5" aria-label="Enlarge: Screenshot of the Business profile screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s05-2.webp" alt="Screenshot of the Business profile screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Tapping Continue reveals both hidden rules at once, in red.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-6" class="wl-step" data-wl-step="6" data-wl-group="B">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase B &middot; Business details</span>
+<span class="wl-chip wl-chip--screen">Your information &amp; UBOs</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">06</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 6. </span>Declare the owners, then attest</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Persona now asks what <i>you</i> are to the business, then collects every other owner, signer and control person. The three definitions on the first screen are regulatory, not cosmetic.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>First name, last name, title <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Beneficial owner</b> &mdash; at least 25% ownership</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Control person</b> &mdash; controls, manages or directs the business</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Signer</b> &mdash; can authorise transactions</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Email for the onboarding link, country of residence</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tick the <b>attestation</b> <span class="wl-ref">2</span> and continue</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>Sole proprietorship / IE: there is only one owner, and it is you.</b> An individual entrepreneur cannot have co-owners, so tick all three roles, add nobody else, and the UBO screen will show a single <i>Associated Person 1 (you)</i>.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>LLC: usually one owner too.</b> Unless you actually brought in partners, the LLC is you at 100%. Only add people here if they genuinely hold 25%+ or control the business.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>At least one signer is required</b> across the whole application. If every signer box is left unticked the flow cannot complete.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+The attestation legally certifies that the ownership information is <b>complete and correct</b>. Omitting a 25%+ owner is a compliance failure, not a form typo.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Everyone you add here receives their own verification email and must finish their own KYC (Phase&nbsp;E) before the business can be approved. Warn them in advance.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s06-1.webp" data-gall="wl-step-6" aria-label="Enlarge: Screenshot of the Your information &amp; UBOs screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s06-1.webp" alt="Screenshot of the Your information &amp; UBOs screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s06-2.webp" data-gall="wl-step-6" aria-label="Enlarge: Screenshot of the Your information &amp; UBOs screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s06-2.webp" alt="Screenshot of the Your information &amp; UBOs screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">With one owner, the UBO screen lists only <i>Associated Person 1 (you)</i>. Tick the attestation and continue.</figcaption>
+</figure></div>
+</div>
+</section>
+<div class="wl-phase-head" id="phase-C" data-wl-phase="C">
+<span class="wl-phase-badge" aria-hidden="true">C</span>
+<div>
+<p class="wl-phase-kicker">Phase C &middot; steps 7&ndash;12</p>
+<h2 class="wl-phase-h2">Business documents<span class="wl-dot">.</span></h2>
+<p class="wl-phase-sub">Upload the evidence pack: registration, address, good standing, tax.</p>
+</div>
+</div>
+<section id="step-7" class="wl-step" data-wl-step="7" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">Required submissions</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">07</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 7. </span>The document checklist appears</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">This hub is the spine of Phase&nbsp;C. Each row opens a sub-flow and turns into a check mark when done; <b>Submit documents</b> stays greyed out until every row is complete.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>UBO Information &mdash; already complete</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Proof of business activity</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Proof of address</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Evidence of good standing</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>EEA Required Information</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+The exact rows depend on your registration country &mdash; the EEA row appears because of the country chosen in Step&nbsp;3.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Take the rows in any order. Start with whichever document you already have open.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s07-1.webp" data-gall="wl-step-7" aria-label="Enlarge: Screenshot of the Required submissions screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s07-1.webp" alt="Screenshot of the Required submissions screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-8" class="wl-step" data-wl-step="8" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">Proof of business activity</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">08</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 8. </span>Upload the company registration letter</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">This row wants proof that the entity legally exists and trades. The document to use is the <b>company registration letter</b> &mdash; the certificate the registry issued when the business was incorporated.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Locate the registration letter from the company registry</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Upload the file</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Wait for the row to show a check mark</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>Use the original digital PDF, not a photo of it.</b> Find the registration letter in the email the registry sent when the company was registered and upload that file directly. The original keeps its text layer and digital signature, so the OCR reads every field cleanly. Phone photos and re-scans of printouts are where rejections come from.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+Do not confuse this row with <b>Evidence of good standing</b> further down. The registration letter belongs <i>here</i>; good standing takes a separate document (Step&nbsp;10).
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s08-1.webp" data-gall="wl-step-8" aria-label="Enlarge: Screenshot of the Proof of business activity screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s08-1.webp" alt="Screenshot of the Proof of business activity screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-9" class="wl-step" data-wl-step="9" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">Proof of Address</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">09</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 9. </span>Upload the business proof of address</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The requirements are spelled out precisely and the OCR checks them: the document must be <b>dated within the last 3 months</b> and clearly show the <b>date</b>, the <b>business name</b> and the <b>operating address</b>.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>+</b> to attach a file or photo <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Submit</b> and wait while it is read <span class="wl-ref">2</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>The row turns green on the checklist <span class="wl-ref">3</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>In Armenia, go to your bank for this one.</b> Utility and telecom bills are rarely issued in a company&rsquo;s name here, so the two documents that reliably clear this row are a <b>bank statement that prints the address</b>, or a <b>letter of reference from the bank</b> &mdash; both drawn on the <b>business account</b>.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Check the statement actually shows the address before uploading.</b> Many Armenian statements print the account holder and the period but omit the address, which fails this row on the spot. Ask the branch for a version that includes it, or request the reference letter instead.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+A document older than 3 months is auto-rejected even if everything else is perfect &mdash; a reference letter should be freshly issued.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Remote or home-based business? Persona explicitly allows the residential address of a control person as the address of actual operations.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s09-1.webp" data-gall="wl-step-9" aria-label="Enlarge: Screenshot of the Proof of Address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s09-1.webp" alt="Screenshot of the Proof of Address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s09-2.webp" data-gall="wl-step-9" aria-label="Enlarge: Screenshot of the Proof of Address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s09-2.webp" alt="Screenshot of the Proof of Address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Every upload is read by OCR, which compares it against what you typed in Phase&nbsp;B.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">3</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s09-3.webp" data-gall="wl-step-9" aria-label="Enlarge: Screenshot of the Proof of Address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s09-3.webp" alt="Screenshot of the Proof of Address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Two rows down, two to go.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-10" class="wl-step" data-wl-step="10" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">Evidence of Good Standing</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">10</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 10. </span>Prove the entity is active</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">A <i>supplementary</i> document showing the business is active and in good standing. Your registration letter has already been used one row up, so this row takes something else &mdash; and a <b>business bank statement showing some transactions</b> does the job.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Attach a PDF or clear photos <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>An accepted example looks like <span class="wl-ref">2</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Submit</b> and wait for processing <span class="wl-ref">3</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>A business bank statement with some transactions on it is accepted here.</b> The transactions are the point &mdash; they evidence that the account is live and the business is actually trading. Pick a period with real activity rather than a quiet month. A certificate of good standing or a registry extract works too.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>Do not crop the transaction rows out.</b> They are what proves the account is active, so include the pages that show them rather than just the header page.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+The same statement can serve this row and proof of address (Step&nbsp;9), so one PDF from online banking may cover both &mdash; provided it prints the address, which that row requires and this one does not.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Checklist for any upload: issuer visible, business name visible, date inside the window, transactions or address visible as the row requires, nothing cropped, all four corners in frame.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s10-1.webp" data-gall="wl-step-10" aria-label="Enlarge: Screenshot of the Evidence of Good Standing screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s10-1.webp" alt="Screenshot of the Evidence of Good Standing screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s10-2.webp" data-gall="wl-step-10" aria-label="Enlarge: Screenshot of the Evidence of Good Standing screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s10-2.webp" alt="Screenshot of the Evidence of Good Standing screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">An accepted example &mdash; issuing bank, business name, period and currency all legible, with a table of real transactions further down the page.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">3</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s10-3.webp" data-gall="wl-step-10" aria-label="Enlarge: Screenshot of the Evidence of Good Standing screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s10-3.webp" alt="Screenshot of the Evidence of Good Standing screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Same automated extraction. Wait for the row to turn green rather than navigating away.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-11" class="wl-step" data-wl-step="11" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">EEA Required Information</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">11</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 11. </span>Foreign tax registration</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The final row is a single regulatory question driven by European rules: <b>are you registered with any foreign tax authorities outside your incorporation country?</b></p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Open <b>EEA Required Information</b>, the last open row <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Answer <b>Yes</b> or <b>No</b> <span class="wl-ref">2</span> &mdash; here: <i>No</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Continue</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+Answer <b>Yes</b> and you are asked for each foreign tax jurisdiction and its tax identification number, so have those ready before tapping.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+This mirrors CRS / FATCA-style tax-residency reporting.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s11-1.webp" data-gall="wl-step-11" aria-label="Enlarge: Screenshot of the EEA Required Information screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s11-1.webp" alt="Screenshot of the EEA Required Information screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Three rows green; the last one is a questionnaire rather than an upload.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s11-2.webp" data-gall="wl-step-11" aria-label="Enlarge: Screenshot of the EEA Required Information screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s11-2.webp" alt="Screenshot of the EEA Required Information screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-12" class="wl-step" data-wl-step="12" data-wl-group="C">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase C &middot; Business documents</span>
+<span class="wl-chip wl-chip--screen">Required submissions</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">12</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 12. </span>Submit the document pack</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Every row is green and <b>Submit documents</b> is finally active. Tapping it locks the business file and hands it to compliance.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Submit documents</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+After this you cannot edit the business answers from inside the flow. Re-check the entity name and registration number before tapping.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s12-1.webp" data-gall="wl-step-12" aria-label="Enlarge: Screenshot of the Required submissions screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s12-1.webp" alt="Screenshot of the Required submissions screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<div class="wl-phase-head" id="phase-D" data-wl-phase="D">
+<span class="wl-phase-badge" aria-hidden="true">D</span>
+<div>
+<p class="wl-phase-kicker">Phase D &middot; steps 13&ndash;16</p>
+<h2 class="wl-phase-h2">Funds &amp; risk profile<span class="wl-dot">.</span></h2>
+<p class="wl-phase-sub">Explain where money comes from and how the account will be used.</p>
+</div>
+</div>
+<section id="step-13" class="wl-step" data-wl-step="13" data-wl-group="D">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase D &middot; Funds &amp; risk profile</span>
+<span class="wl-chip wl-chip--screen">Next steps</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">13</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 13. </span>What happens next, explained</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">A bridging screen with two messages: emails have gone out to every beneficial owner you listed, and because you listed yourself you will get one too. One section still remains in this session.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Next</b> to continue to the source-of-funds section</span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Two tracks now run in parallel: <b>you</b> finish the funds questionnaire here, and <b>every listed person</b> completes their own KYC by email (Phase&nbsp;E).
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+The business is not verified until the last person on the UBO list finishes their email link. With a single-owner IE or LLC, that person is just you.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s13-1.webp" data-gall="wl-step-13" aria-label="Enlarge: Screenshot of the Next steps screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s13-1.webp" alt="Screenshot of the Next steps screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-14" class="wl-step" data-wl-step="14" data-wl-group="D">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase D &middot; Funds &amp; risk profile</span>
+<span class="wl-chip wl-chip--screen">Source of funds</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">14</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 14. </span>Where the money comes from</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The financial-crime questionnaire. Persona wants a coherent story: the source category, a narrative, an expected size, and whether you move other people&rsquo;s money.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Primary source of funds</b> &mdash; here: <i>Sales of Goods and Services</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Source of funds description</b> &mdash; narrative free text</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Estimated annual revenue</b> &mdash; here: <i>$0 &ndash; $99,999 USD</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Transmitting funds on behalf of customers &mdash; here: <i>Not applicable. We will only move internal funds</i></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+The last question is the important one. <b>&lsquo;Yes&rsquo;</b> means you act as a money transmitter for third parties and triggers a far heavier review, including proof of your own KYC/KYB/AML programme. Pick <i>&lsquo;Not applicable&rsquo;</i> only if that is genuinely true.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Keep this description consistent with the business description from Step&nbsp;5 and with the revenue band you choose.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s14-1.webp" data-gall="wl-step-14" aria-label="Enlarge: Screenshot of the Source of funds screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s14-1.webp" alt="Screenshot of the Source of funds screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-15" class="wl-step" data-wl-step="15" data-wl-group="D">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase D &middot; Funds &amp; risk profile</span>
+<span class="wl-chip wl-chip--screen">Business activity</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">15</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 15. </span>Restricted countries and high-risk activities</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Two screening questions: whether you operate in comprehensively sanctioned jurisdictions, then a checklist of regulated and high-risk activities.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Sanctioned countries &mdash; Cuba, Iran, Myanmar, North Korea, Syria &mdash; here: <i>No</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tick every activity that applies &mdash; here: <i>None of the above</i></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+The list covers money services (check cashing, gift cards, ATMs, remittances), lending/banking, foreign exchange &amp; virtual-currency brokerage/OTC, holding client funds (escrow), investment services, safe deposit boxes, marijuana, third-party payment processing, adult entertainment, weapons, gambling, nicotine/tobacco, pharmaceuticals, precious metals and stones.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+Under-declaring here is the fastest route to an account being frozen later. If an activity is even partly yours, tick it and explain.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s15-1.webp" data-gall="wl-step-15" aria-label="Enlarge: Screenshot of the Business activity screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s15-1.webp" alt="Screenshot of the Business activity screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-16" class="wl-step" data-wl-step="16" data-wl-group="D">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase D &middot; Funds &amp; risk profile</span>
+<span class="wl-chip wl-chip--screen">Expected account usage</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">16</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 16. </span>How the account will be used</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The last business question. Persona is establishing a baseline so unusual activity can be detected later. Submitting it closes the session that started at Step&nbsp;1.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Primary account purpose</b> &mdash; here: <i>Receive payment for goods and services</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Expected monthly send + receive volume</b> &mdash; here: <i>US$3,000</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Submit</b> <span class="wl-ref">1</span> &mdash; the business half is done <span class="wl-ref">2</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Give a realistic monthly figure. Wildly exceeding your stated volume later triggers monitoring alerts; understating it to look safe works against you.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Nothing is approved yet. The file is decided only once every listed individual finishes Phase&nbsp;E.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s16-1.webp" data-gall="wl-step-16" aria-label="Enlarge: Screenshot of the Expected account usage screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s16-1.webp" alt="Screenshot of the Expected account usage screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s16-2.webp" data-gall="wl-step-16" aria-label="Enlarge: Screenshot of the Expected account usage screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s16-2.webp" alt="Screenshot of the Expected account usage screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">The business half is submitted &mdash; roughly 45 minutes of continuous work.</figcaption>
+</figure></div>
+</div>
+</section>
+<div class="wl-phase-head" id="phase-E" data-wl-phase="E">
+<span class="wl-phase-badge" aria-hidden="true">E</span>
+<div>
+<p class="wl-phase-kicker">Phase E &middot; steps 17&ndash;25</p>
+<h2 class="wl-phase-h2">Individual verification<span class="wl-dot">.</span></h2>
+<p class="wl-phase-sub">Each owner / control person proves who they are (KYC).</p>
+</div>
+</div>
+<section id="step-17" class="wl-step" data-wl-step="17" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Email</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">17</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 17. </span>The individual verification email</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Persona Identities, Inc. emails every person you listed. The message names the business, gives a deadline and a single <b>Verify identity</b> button.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Open the email on a phone with a working camera</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Verify identity</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+The link expires in <b>7 days</b>. After that the person must be re-invited.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Do this on a phone, not a laptop &mdash; the ID capture needs a real camera. Check spam if it has not arrived within a few minutes.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s17-1.webp" data-gall="wl-step-17" aria-label="Enlarge: Screenshot of the Email screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s17-1.webp" alt="Screenshot of the Email screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-18" class="wl-step" data-wl-step="18" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Getting started</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">18</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 18. </span>Biometric consent and the personal checklist</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The individual (KYC) inquiry opens with the same &lsquo;single session&rsquo; warning plus a biometric consent notice: Persona will process biometric information from your face and ID to verify identity and detect fraud.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Read the biometric notice and privacy policy <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Optionally switch language at the bottom</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Consent, and the personal checklist opens <span class="wl-ref">2</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Persona states biometric information is stored for <b>no more than 3 years</b>.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+This session is not saved either. Have the physical ID document in hand before you tap.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Rows unlock progressively &mdash; do not assume the three rows you see here are the final list.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s18-1.webp" data-gall="wl-step-18" aria-label="Enlarge: Screenshot of the Getting started screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s18-1.webp" alt="Screenshot of the Getting started screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s18-2.webp" data-gall="wl-step-18" aria-label="Enlarge: Screenshot of the Getting started screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s18-2.webp" alt="Screenshot of the Getting started screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">The personal checklist. A fourth row is added later, after the ID step.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-19" class="wl-step" data-wl-step="19" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Country</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">19</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 19. </span>Where do you live?</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Your country of residence determines which government IDs are accepted and whether extra documents are required.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Select your country of residence</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Select</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+This is residence &mdash; not nationality, and not the business registration country. All three can differ.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s19-1.webp" data-gall="wl-step-19" aria-label="Enlarge: Screenshot of the Country screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s19-1.webp" alt="Screenshot of the Country screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-20" class="wl-step" data-wl-step="20" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Basic Information</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">20</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 20. </span>Your personal details</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Straightforward identity fields &mdash; but every one of them must match the ID document you are about to photograph.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>First / middle / last name <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Birthdate</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Email address and phone number</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>National Identification Number</b></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Home address: street, unit, city, postcode <span class="wl-ref">2</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>National Identification Number means your residency number.</b> If you hold a residence card, enter the number printed on that card &mdash; the <code class="wl-code">AN&hellip;</code> number &mdash; not a passport number and not a national ID from another country.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+Spell the name <b>exactly as printed on the ID</b>, including transliteration. &lsquo;Mohammad&rsquo; against &lsquo;Muhammad&rsquo; is enough to fail the automated match.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+The identification number field is masked &mdash; tap the eye icon and re-read it before continuing.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Use the address that appears on the proof-of-address document you will upload in Step&nbsp;23.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s20-1.webp" data-gall="wl-step-20" aria-label="Enlarge: Screenshot of the Basic Information screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s20-1.webp" alt="Screenshot of the Basic Information screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s20-2.webp" data-gall="wl-step-20" aria-label="Enlarge: Screenshot of the Basic Information screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s20-2.webp" alt="Screenshot of the Basic Information screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Further down the same form: street, unit, city and postcode.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-21" class="wl-step" data-wl-step="21" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Government ID</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">21</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 21. </span>Which ID are you using?</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">You pick the issuing country, and Persona then offers the ID types it can read for it &mdash; passport, national ID card, residence card or driving licence.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Select the country that issued your ID</span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Select</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+A passport is a single-page capture and generally the smoothest. Cards require both a front and a back photo &mdash; see the next step for why the back is the hard part.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s21-1.webp" data-gall="wl-step-21" aria-label="Enlarge: Screenshot of the Government ID screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s21-1.webp" alt="Screenshot of the Government ID screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-22" class="wl-step" data-wl-step="22" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Government ID</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">22</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 22. </span>Photograph your ID</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Camera capture with a framing guide and a live warning to check lighting and lettering before continuing. Cards need both sides; the back is where most people get stuck.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Photograph the front, review, <b>Use this photo</b> <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Photograph the back and confirm <span class="wl-ref">2</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Wait through the upload <span class="wl-ref">3</span> and processing <span class="wl-ref">4</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>It hunts for a barcode your card does not have.</b> Armenian residence cards carry no barcode, so the back capture <span class="wl-ref">2</span> can fail again and again with no useful error. There is no way to skip it &mdash; the workaround is to keep retrying while <i>changing the conditions</i>: different lighting, a different background surface, a slightly different angle and distance. It usually takes several attempts before a frame is accepted.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+<b>The photo must be taken live.</b> Do not photograph a printout, hold a scan up on another screen, or upload a saved image file &mdash; Persona detects these and rejects them. Capture the physical document with the phone camera in the moment.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Kill the glare: matte surface, no direct overhead light, no flash on laminate, phone held parallel to the card rather than at an angle.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+If any corner is cut off, retake it. Cropped edges are a common auto-rejection, and backgrounding the browser mid-upload can drop the whole session.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+A selfie / liveness check can follow here, matching your face to the ID portrait. That is what the biometric consent in Step&nbsp;18 covered.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s22-1.webp" data-gall="wl-step-22" aria-label="Enlarge: Screenshot of the Government ID screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s22-1.webp" alt="Screenshot of the Government ID screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Front of the card. Review it, then <b>Use this photo</b>.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s22-2.webp" data-gall="wl-step-22" aria-label="Enlarge: Screenshot of the Government ID screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s22-2.webp" alt="Screenshot of the Government ID screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Back of the card &mdash; the capture that tends to fail repeatedly.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">3</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s22-3.webp" data-gall="wl-step-22" aria-label="Enlarge: Screenshot of the Government ID screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s22-3.webp" alt="Screenshot of the Government ID screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Uploading. Keep the page open and stay on a stable connection.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">4</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s22-4.webp" data-gall="wl-step-22" aria-label="Enlarge: Screenshot of the Government ID screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s22-4.webp" alt="Screenshot of the Government ID screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">Persona authenticates the document and compares the extracted name and date of birth with what you typed.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-23" class="wl-step" data-wl-step="23" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Proof of address</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">23</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 23. </span>Your personal proof of address</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">After the ID step a new row appears. The rules are the same as the business version, applied to you: a document from the <b>last 3 months</b> showing the <b>date</b>, <b>your name</b> and <b>your address</b>.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>A new <b>Proof of Address</b> row appears <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Attach the document <span class="wl-ref">2</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Submit</b> and wait for processing <span class="wl-ref">3</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+<b>The document that works is a personal bank statement or a bank reference letter that prints your address.</b> Download the original PDF from online banking rather than photographing a printout, and confirm the address is actually on the page before uploading.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+The name must match the name on your ID, and the address must match what you typed in Step&nbsp;20.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+This is the personal counterpart of the business row in Step&nbsp;9 &mdash; same three-month window, same OCR checks.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s23-1.webp" data-gall="wl-step-23" aria-label="Enlarge: Screenshot of the Proof of address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s23-1.webp" alt="Screenshot of the Proof of address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">A <b>Proof of Address</b> row has been added to the list.</figcaption>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s23-2.webp" data-gall="wl-step-23" aria-label="Enlarge: Screenshot of the Proof of address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s23-2.webp" alt="Screenshot of the Proof of address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">3</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s23-3.webp" data-gall="wl-step-23" aria-label="Enlarge: Screenshot of the Proof of address screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s23-3.webp" alt="Screenshot of the Proof of address screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+<figcaption class="wl-cap">The final automated extraction of the flow.</figcaption>
+</figure></div>
+</div>
+</section>
+<section id="step-24" class="wl-step" data-wl-step="24" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Ownership Info</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num" aria-hidden="true">24</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 24. </span>Confirm your role and stake</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">The personal mirror of the business-side roles screen, with two additions: your exact <b>percentage ownership</b>, and a <b>director</b> role.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Your title &mdash; here: <i>CEO</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Beneficial owner</b> + percentage &mdash; here: <i>100</i></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span><b>Control person</b>, <b>signer</b>, <b>director</b></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Continue</b></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+For a single-owner IE or LLC this is simply <b>100</b>, with all four boxes ticked &mdash; you are the owner, the control person, the signer and the director.
+</div>
+</div>
+<div class="wl-note wl-note--warn">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.24 3.96 2.51 17.3A2 2 0 0 0 4.24 20.3h15.52a2 2 0 0 0 1.73-3L13.76 3.96a2 2 0 0 0-3.52 0Z"/></svg></span>
+<div class="wl-note-body">
+<span class="sr-only">Watch out. </span>
+With more than one owner, the percentages across everyone must be consistent with the UBO list you submitted in Step&nbsp;6.
+</div>
+</div>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+&lsquo;Director&rsquo; appears only in the individual flow &mdash; it was not one of the three roles on the business-side screen.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s24-1.webp" data-gall="wl-step-24" aria-label="Enlarge: Screenshot of the Ownership Info screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s24-1.webp" alt="Screenshot of the Ownership Info screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+<section id="step-25" class="wl-step" data-wl-step="25" data-wl-group="E">
+<div class="wl-step-tags">
+<span class="wl-chip wl-chip--phase">Phase E &middot; Individual verification</span>
+<span class="wl-chip wl-chip--screen">Complete</span>
+</div>
+<div class="wl-step-head">
+<span class="wl-num wl-num--done" aria-hidden="true">25</span>
+<h3 class="wl-step-title"><span class="sr-only">Step 25. </span>All rows green &mdash; submitted</h3>
+</div>
+<div class="wl-step-body">
+<div class="wl-prose">
+<p class="wl-p">Basic information, Government ID, Proof of Address and Ownership Info are complete. Continue submits the individual verification; Persona runs its checks and Bridge&rsquo;s compliance team reviews the file, reaching out only if something else is needed.</p>
+<h4 class="wl-label">What you do here</h4>
+<ul class="wl-fields">
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>Tap <b>Continue</b> with all four rows green <span class="wl-ref">1</span></span></li>
+<li class="wl-field"><span class="wl-field-dot" aria-hidden="true"></span><span>The submission is confirmed <span class="wl-ref">2</span></span></li>
+</ul>
+<h4 class="wl-label">Watch out</h4>
+<div class="wl-note wl-note--info">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Good to know</span>
+Repeat Phase&nbsp;E for every person on the UBO list. With a single-owner IE or LLC you are the only one, and the file is now complete.
+</div>
+</div>
+<div class="wl-note wl-note--tip">
+<span class="wl-note-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V18h8v-3.3A7 7 0 0 0 12 2Z"/></svg></span>
+<div class="wl-note-body">
+<span class="wl-note-label">Tip</span>
+Keep every document you uploaded. If compliance comes back with a question, it is almost always about a mismatch between one of them and the form.
+</div>
+</div>
+</div>
+<div class="wl-shots"><figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">1</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s25-1.webp" data-gall="wl-step-25" aria-label="Enlarge: Screenshot of the Complete screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s25-1.webp" alt="Screenshot of the Complete screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure>
+<figure class="wl-shot">
+<span class="wl-shotnum" aria-hidden="true">2</span>
+<a class="project-gallery-link wl-shot-link" href="assets/img/Assets/WallletBusinessAccount/s25-2.webp" data-gall="wl-step-25" aria-label="Enlarge: Screenshot of the Complete screen">
+<span class="wl-phone">
+<img src="assets/img/Assets/WallletBusinessAccount/s25-2.webp" alt="Screenshot of the Complete screen" width="377" height="820" loading="lazy" decoding="async" class="wl-phone-img">
+</span>
+<span class="wl-zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M11 8v6M8 11h6M20 20l-4.2-4.2"/></svg>Enlarge</span>
+</a>
+</figure></div>
+</div>
+</section>
+
+					<!-- Closing screen -->
+					<section id="wl-closing" class="wl-card p-6 text-center sm:p-10 lg:p-14">
+						<p class="wl-eyebrow wl-eyebrow--done">That is the whole flow</p>
+						<h2 class="wl-h2 mx-auto mt-6 max-w-2xl">Both sessions submitted, nothing left in your court<span class="wl-dot">.</span></h2>
+						<p class="wl-lede mx-auto mt-5">Business and individual verification are in with Persona. From here it is a review queue, not a form &mdash; Bridge emails you when the decision lands.</p>
+						<div class="mt-9 flex flex-wrap items-center justify-center gap-3">
+							<a class="wl-cta" href="https://walllet.com/" target="_blank" rel="noopener">
+								Open your account
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M4 10h12" /><path d="m11 5 5 5-5 5" /></svg>
+							</a>
+							<a class="wl-cta wl-cta--ghost" href="#step-1" data-wl-go="1">Back to step 1</a>
+						</div>
+						<p class="wl-end-note mx-auto mt-9 max-w-xl">Walk-through documented from a real application. Screens and required documents vary by registration country, so treat the rows you see as the source of truth.</p>
+					</section>
+					</div>
+
+					<!-- Step pager -->
+					<nav class="wl-pager" id="wl-pager" aria-label="Step navigation">
+						<button type="button" class="wl-pg" id="wl-prev">
+							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M16 10H4" /><path d="m9 5-5 5 5 5" /></svg>
+							Previous
+						</button>
+						<span class="wl-pg-mid" id="wl-pager-mid" aria-live="polite"></span>
+						<button type="button" class="wl-pg wl-pg--next" id="wl-next">
+							Next
+							<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true"><path d="M4 10h12" /><path d="m11 5 5 5-5 5" /></svg>
+						</button>
+					</nav>
+				</div>
+			</div>
+		</main>
+
+		<!-- Document footer -->
+		<footer class="wl-foot">
+			<div>
+				<a class="wl-brand" href="https://walllet.com/" target="_blank" rel="noopener">
+					<span class="wl-brand-mark" aria-hidden="true">w</span>
+					<span class="wl-wordmark text-lg">walllet<span>.com</span></span>
+				</a>
+				<p class="wl-end-note mt-4 max-w-sm">Receive USD, EUR and GBP, hold them, and convert to naira when you choose.</p>
+			</div>
+			<div class="wl-foot-links">
+				<a class="wl-foot-link" href="#intro" data-wl-go="0">Back to the top</a>
+				<a class="wl-foot-link" href="https://walllet.com/" target="_blank" rel="noopener">
+					walllet.com
+					<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5" aria-hidden="true"><path d="M7 4h9v9" /><path d="M16 4 5 15" /></svg>
+				</a>
+			</div>
+			<p class="wl-foot-note">Business account verification walk-through &mdash; 25 steps, 43 screens. Persona is the verification vendor; Bridge is the platform that opens the account. Not legal or financial advice.</p>
+		</footer>
+	</div>
+
+	<script src="./assets/js/venobox.min.js"></script>
+	<script>
+(function () {
+  var doc = document.querySelector('.wl-doc');
+  if (!doc) return;
+
+  /* Screenshot lightbox. main.js is not loaded here, so init venobox directly
+     on the same selector the rest of the site uses. */
+  if (typeof VenoBox !== 'undefined') {
+    new VenoBox({
+      selector: '.project-gallery-link',
+      fitView: false,
+      onPostOpen: function () { document.body.style.overflowY = 'hidden'; },
+      onPreClose: function () { document.body.style.overflowY = 'auto'; },
+    });
+  }
+
+  /*
+   * One screen at a time: the overview, then each of the 25 steps.
+   * The selected screen is explicit state, not something derived from scroll
+   * position - so the index entry you click is always the one that lights up.
+   */
+  var overview = document.getElementById('wl-overview');
+  var guide = document.querySelector('.wl-guide');
+  var stage = document.getElementById('wl-stream');
+  var guideCta = document.getElementById('wl-guide-cta');
+  var backCta = document.getElementById('wl-back-cta');
+  var closing = document.getElementById('wl-closing');
+  var pager = document.getElementById('wl-pager');
+  var pagerMid = document.getElementById('wl-pager-mid');
+  var prevBtn = document.getElementById('wl-prev');
+  var nextBtn = document.getElementById('wl-next');
+  var bar = document.querySelector('.wl-progress i');
+
+  var steps = [].slice.call(document.querySelectorAll('[data-wl-step]'));
+  var heads = [].slice.call(document.querySelectorAll('[data-wl-phase]'));
+  var N = steps.length;
+
+  /* The index is rendered twice (sticky rail + mobile disclosure), so each
+     screen maps to a list of links rather than a single one. */
+  var links = {};
+  document.querySelectorAll('[data-wl-idx]').forEach(function (a) {
+    var k = a.getAttribute('data-wl-idx');
+    (links[k] = links[k] || []).push(a);
+  });
+
+  var groupOf = {};
+  steps.forEach(function (el) {
+    groupOf[el.getAttribute('data-wl-step')] = el.getAttribute('data-wl-group');
+  });
+
+  var state = { i: 0 };
+
+  /* In guide mode the document must not scroll at all - the panes do. Opening
+     a #step-N link still makes the browser jump to that anchor, and it can do
+     so after the shell has locked overflow, so the offset sticks. Force the
+     document back to the origin whenever the screen changes. */
+  function resetPageScroll() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+    var pane = document.getElementById('wl-stream');
+    if (pane) pane.scrollTop = 0;
+  }
+  var toggle = function (el, off) { if (el) el.classList.toggle('is-hidden', off); };
+
+  function render() {
+    var i = state.i;
+    var inGuide = i !== 0;
+
+    /* Two modes: the hero scrolls like a page, the guide is an app shell with
+       its own scroll panes and a pinned pager. */
+    toggle(overview, inGuide);
+    toggle(guide, !inGuide);
+    toggle(closing, i !== N);
+    doc.classList.toggle('is-step', inGuide);
+    document.documentElement.classList.toggle('wl-app', inGuide);
+
+    /* The header CTA starts the walk-through, then becomes the way back. */
+    toggle(guideCta, inGuide);
+    toggle(backCta, !inGuide);
+
+    steps.forEach(function (el) {
+      toggle(el, +el.getAttribute('data-wl-step') !== i);
+    });
+    /* Keep the phase heading that belongs to the visible step. */
+    heads.forEach(function (el) {
+      toggle(el, el.getAttribute('data-wl-phase') !== groupOf[i]);
+    });
+
+    Object.keys(links).forEach(function (k) {
+      var on = +k === i;
+      links[k].forEach(function (a) {
+        a.classList.toggle('is-current', on);
+        if (on) a.setAttribute('aria-current', 'step');
+        else a.removeAttribute('aria-current');
+      });
+    });
+
+    /* Bring the active entry into view inside the scrolling index. */
+    if (links[i]) {
+      links[i].forEach(function (a) {
+        var box = a.closest('.wl-idx-scroll');
+        if (!box) return;
+        var top = a.offsetTop;
+        var bottom = top + a.offsetHeight;
+        if (top < box.scrollTop || bottom > box.scrollTop + box.clientHeight) {
+          box.scrollTop = top - box.clientHeight / 2 + a.offsetHeight / 2;
+        }
+      });
+    }
+
+    if (prevBtn) prevBtn.disabled = i === 0;
+    if (nextBtn) nextBtn.disabled = i === N;
+    if (pagerMid) pagerMid.textContent = i === 0 ? 'Overview' : 'Step ' + i + ' of ' + N;
+    if (bar) bar.style.width = ((i / N) * 100) + '%';
+  }
+
+  function go(i, updateHash) {
+    state.i = Math.max(0, Math.min(N, i));
+    render();
+    if (stage) stage.scrollTop = 0;
+    resetPageScroll();
+    if (updateHash !== false) {
+      var hash = state.i === 0 ? '#intro' : '#step-' + state.i;
+      if (location.hash !== hash) history.replaceState(null, '', hash);
+    }
+  }
+
+  doc.addEventListener('click', function (e) {
+    var idx = e.target.closest('[data-wl-idx]');
+    if (idx) { e.preventDefault(); go(+idx.getAttribute('data-wl-idx')); return; }
+
+    var jump = e.target.closest('[data-wl-go]');
+    if (jump) { e.preventDefault(); go(+jump.getAttribute('data-wl-go')); return; }
+
+    if (e.target.closest('#wl-prev')) { go(state.i - 1); return; }
+    if (e.target.closest('#wl-next')) { go(state.i + 1); return; }
+
+    /* Copy the AI prompt. */
+    var btn = e.target.closest('[data-wl-copy]');
+    if (!btn) return;
+    var pre = document.getElementById(btn.getAttribute('data-wl-copy'));
+    if (!pre || !navigator.clipboard) return;
+    navigator.clipboard.writeText(pre.textContent).then(function () {
+      var label = btn.querySelector('.wl-copy-text');
+      var old = label ? label.textContent : '';
+      btn.classList.add('is-done');
+      if (label) label.textContent = 'Copied';
+      setTimeout(function () {
+        btn.classList.remove('is-done');
+        if (label) label.textContent = old;
+      }, 1600);
+    });
+  });
+
+  /* Close the mobile index once a step is picked. */
+  var mob = document.getElementById('wl-idx-mobile');
+  if (mob) {
+    mob.addEventListener('click', function (e) {
+      if (e.target.closest('.wl-idx-link')) mob.open = false;
+    });
+  }
+
+  addEventListener('keydown', function (e) {
+    if (e.target.matches('input, textarea, select')) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'ArrowRight' && state.i < N) { e.preventDefault(); go(state.i + 1); }
+    if (e.key === 'ArrowLeft' && state.i > 0) { e.preventDefault(); go(state.i - 1); }
+  });
+
+  function fromHash() {
+    var m = /^#step-([0-9]+)$/.exec(location.hash);
+    return m ? Math.max(0, Math.min(N, +m[1])) : 0;
+  }
+  addEventListener('hashchange', function () { go(fromHash(), false); });
+
+  doc.classList.add('wl-js');
+  go(fromHash(), false);
+
+  /* The anchor jump can land after load and after paint, so undo it on both. */
+  addEventListener('load', function () {
+    resetPageScroll();
+    requestAnimationFrame(resetPageScroll);
+  });
+})();
+	</script>
+</body>
+
+</html>

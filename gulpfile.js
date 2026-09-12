@@ -50,7 +50,9 @@ const paths = {
 	},
 
 	img: {
-		src: `./${srcPathName}/img/**/*.{jpg,jpeg,png,svg}`,
+		// webp is copied through untouched: imagemin's default plugin set covers
+		// jpeg/png/gif/svg only, and these screenshots are already compressed.
+		src: `./${srcPathName}/img/**/*.{jpg,jpeg,png,svg,webp}`,
 		dest: `./${buildPathName}/assets/img`,
 		destProd: `./${distPathName}/assets/img`,
 	},
